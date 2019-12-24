@@ -10,8 +10,8 @@
     <script src="/assets/admin/js/pages/crud/forms/widgets/bootstrap-select.js" type="text/javascript"></script>
     <script src="/assets/admin/js/pages/crud/forms/widgets/bootstrap-datepicker.js" type="text/javascript"></script>
     <script>
-     
-      
+
+
         $("#txtName").change(function () {
             var val = $(this).val();
             var formatMeta = removeAccents(val);
@@ -57,7 +57,7 @@
         })
 
 
-          $("#txtPromotionPrice").change(function () {
+        $("#txtPromotionPrice").change(function () {
             var val = $(this).val();
             var price = $(txtPrice).val();
             if (parseInt(val) > parseInt(price)) {
@@ -79,6 +79,19 @@
             var url = $('#txtImage').val();
             $('#divImage').empty();
             $('#divImage').append('<img width="150" height="150" src="' + url + '" /> ');
+
+
+            var val = $('#txtMoreImage').val();
+            var slip = val.split('\n');
+
+            if (slip.length > 0) {
+                for (var i = 0; i < slip.length; i++) {
+                    {
+                        $('#divMoreImage').append('<img style = "  margin-left: 5px;" width="150" height="150" src="' + slip[i] + '" /> ');
+                    }
+                }
+            }
+
         });
     </script>
 }

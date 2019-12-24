@@ -16,7 +16,14 @@ namespace Model.Dao
             db = new OnlineShopDbContext();
         }
 
-       public  List<UserGroup> GetUserGroups()
+        public bool Insert(UserGroup entity)
+        {
+            db.UserGroups.Add(entity);
+            db.SaveChanges();
+            return true;
+        }
+
+        public  List<UserGroup> GetUserGroups()
         {
             return db.UserGroups.ToList();
         }

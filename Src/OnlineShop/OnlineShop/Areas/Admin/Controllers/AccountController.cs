@@ -44,6 +44,7 @@ namespace OnlineShop.Areas.Admin.Controllers
         void SetUserGroupViewBag()
         {
             var dao = new UserGroupDao();
+         
             ViewBag.UserGroups = dao.GetUserGroups().ToList();
         }
 

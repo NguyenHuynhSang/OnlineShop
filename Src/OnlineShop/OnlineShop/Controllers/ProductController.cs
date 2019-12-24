@@ -28,12 +28,13 @@ namespace OnlineShop.Controllers
             ViewBag.Category = category;
 
             ViewBag.Option = orderby;
-
+ 
 
 
             int totalRecord = 0;
-            var model = new ProductDao().ListByCategoryId(cateId, ref totalRecord, page, pageSize, orderby);
-
+            var dao = new ProductDao();
+            var model = dao.ListByCategoryId(cateId, ref totalRecord, page, pageSize, orderby);
+            ViewBag.NewProducts = dao.ListNewProduct(5);
             ViewBag.Total = totalRecord;
             ViewBag.Page = page;
 

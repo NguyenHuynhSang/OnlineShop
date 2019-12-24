@@ -135,8 +135,8 @@ namespace OnlineShop.Areas.Admin.Controllers
             ViewBag.AllCategory = dao.ListAll();
             ViewBag.Status = new SelectList(new[]
            {
-                                    new { ID="true", Status="Đã kích hoạt" },
-                                    new { ID="false", Status="Khóa" },
+                                    new { ID="true", Status="Hiển thị" },
+                                    new { ID="false", Status="Ẩn" },
                                 }, "ID", "Status", true);
 
 

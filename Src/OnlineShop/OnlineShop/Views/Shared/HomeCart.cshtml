@@ -1,15 +1,20 @@
 ﻿@model List<OnlineShop.Models.CartItem>
+
+
+
 <li class="nav-item dropdown">
     <a href="cart.html" class="nav-link" data-toggle="dropdown">
         <i class="ec ec-shopping-bag"></i>
         <span class="cart-items-count count">@Model.Count()</span>
-        <span class="cart-items-total-price total-price"><span class="amount">
-        @{decimal? price = 0;}
-   
-        @Convert.ToDecimal( (Model.Sum(x => price=x.Product.PromotionPrice==0?x.Product.Price:x.Product.PromotionPrice * x.Quantity))).ToString("#,##0")
-  
+        <span class="cart-items-total-price total-price">
+            <span class="amount">
+                @{decimal? price = 0;}
 
-</span></span>
+                @Convert.ToDecimal((Model.Sum(x => price = x.Product.PromotionPrice == 0 ? x.Product.Price : x.Product.PromotionPrice * x.Quantity))).ToString("#,##0")
+
+
+            </span>
+        </span>
     </a>
     <ul class="dropdown-menu dropdown-menu-mini-cart">
         <li>
@@ -20,7 +25,7 @@
                     @foreach (var item in Model)
                     {
                         <li class="mini_cart_item">
-                            <a title="Remove this item" class="remove" href="#">×</a>
+                            <a data-id="@item.Product.ID"title="Remove this item" class="btn-delete1  remove" href="#">×</a>
                             <a href="single-product.html">
                                 <img class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image" src="@item.Product.Image" alt="">@item.Product.Name&nbsp;
                             </a>
@@ -28,24 +33,24 @@
                             <span class="quantity">
                                 @item.Quantity × <span class="amount">
 
-                                @if (item.Product.PromotionPrice == 0)
-                                {
-                                    @Convert.ToDecimal(@item.Product.Price).ToString("#,##0")
-                                }
-                                else
-                                {
-                                    @Convert.ToDecimal(@item.Product.PromotionPrice).ToString("#,##0")
-                                }
+                                    @if (item.Product.PromotionPrice == 0)
+                                    {
+                                        @Convert.ToDecimal(@item.Product.Price).ToString("#,##0")
+                                    }
+                                    else
+                                    {
+                                        @Convert.ToDecimal(@item.Product.PromotionPrice).ToString("#,##0")
+                                    }
 
 
 
 
 
+                                </span>
                             </span>
-                        </span>
-                    </li>
+                        </li>
 
-                }
+                    }
 
 
 

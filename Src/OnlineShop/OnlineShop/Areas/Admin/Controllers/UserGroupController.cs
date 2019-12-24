@@ -38,7 +38,7 @@ namespace OnlineShop.Areas.Admin.Controllers
             foreach (UserRoleByGroupModel subType in childEntity)
             {
             
-              nodes.Add(new TreeViewNode { id = subType.userGroup.ID.ToString() + "-" + subType.role.ID.ToString(), parent = subType.userGroup.ID.ToString(), text = subType.role.Name });
+              nodes.Add(new TreeViewNode { id =subType.role.ID.ToString(), parent = subType.userGroup.ID.ToString(), text = subType.role.Name });
            
 
             }
@@ -49,11 +49,59 @@ namespace OnlineShop.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(string selectedItems)
+        public ActionResult DeleteRole(string selectedItems)
         {
             List<TreeViewNode> items = (new JavaScriptSerializer()).Deserialize<List<TreeViewNode>>(selectedItems);
             return RedirectToAction("Index");
         }
+
+
+
+
+        [HttpGet]
+        public ActionResult Create()
+        {
+
+            return View();
+        }
+
+
+        [HttpPost]
+        public ActionResult Create(User user)
+        {
+            var dao = new UserGroupDao();
+
+            //var listProduct = dao.GetListProduct();
+      
+            //if (ModelState.IsValid)
+            //{
+       
+            //    long id = dao.Insert(product);
+            //    if (id > 0)
+            //    {
+
+            //        // chuyển hướng trang về admin/product/index
+            //        var result = dao.GetListProduct();
+            //        return RedirectToAction("Index", "UserGroup", result);
+            //    }
+            //    else
+            //    {
+            //        ModelState.AddModelError("", "Thêm không thành công");
+            //    }
+
+
+
+            //}
+            //else
+            //{
+            //    ModelState.AddModelError("", "Form lỗi");
+            //}
+
+            return View("Create");
+        }
+
+
+
     }
-   
+
 }

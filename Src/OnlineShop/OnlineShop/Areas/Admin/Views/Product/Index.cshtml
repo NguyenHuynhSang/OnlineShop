@@ -73,16 +73,7 @@
 
                 </div>
                 <div class="row kt-margin-b-20">
-                    <div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
-                        <label>Ngày tạo:</label>
-                        <div class="input-daterange input-group" id="kt_datepicker">
-                            <input type="date" class="form-control kt-input" placeholder="From" data-col-index="5" />
-                            <div class="input-group-append">
-                                <span class="input-group-text"><i class="la la-ellipsis-h"></i></span>
-                            </div>
-                            <input type="date" class="form-control kt-input" name="end" placeholder="To" data-col-index="5" />
-                        </div>
-                    </div>
+                   
 
                     <div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
                         <label>Số lượng</label>
@@ -96,7 +87,7 @@
 
 
                     <div class="col-lg-9 kt-margin-b-10-tablet-and-mobile">
-                        <label>Số lượng</label>
+                        <label>Giá</label>
                         <div class="col-lg-8 col-md-9 col-sm-12">
                             @Html.Hidden("minQ", (int)ViewBag.minQ)
                             @Html.Hidden("maxQ", (int)ViewBag.maxQ)
@@ -181,13 +172,27 @@
 
                                 @*@item.product.Price*@
                             </td>
-                            <td>    @Convert.ToDecimal(item.product.PromotionPrice).ToString("#,##0")</td>
-                            <td>@item.product.Quantity</td>
+                            <td>
+                                @item.product.CreatedDate
+                            </td>
+                            <td>
+                                @if (@item.product.Quantity == 0)
+                                {
+                                    <span class="kt-badge kt-badge--danger kt-badge--inline kt-badge--pill">Hết hàng</span>
+                                }
+                                else
+                                {
+                                    @item.product.Quantity
+                                }
+
+                            </td>
 
 
 
                             <td>
-                                <span class="kt-badge kt-badge--brand kt-badge--inline kt-badge--pill">@item.product.Status</span>
+                                <span class="kt-badge kt-badge--brand kt-badge--inline kt-badge--pill">
+                                @item.product.Status   
+                                </span>
 
                             </td>
                             <td>@item.category.Name</td>
