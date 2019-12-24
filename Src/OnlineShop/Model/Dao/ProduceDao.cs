@@ -315,7 +315,9 @@ namespace Model.Dao
                 product.MoreImages = entity.MoreImages;
                 product.OrginalPrice = product.OrginalPrice;
                 product.Quantity = product.Quantity;
-                product.CategoryID = entity.CategoryID;
+                product.Content = entity.Content;
+                product.Description = entity.Description;
+              product.CategoryID = entity.CategoryID;
                 product.Warranty = product.Warranty;
                 product.ModifiedBy = entity.ModifiedBy;
                 product.ModifiedDate = DateTime.Now;

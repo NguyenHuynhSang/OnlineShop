@@ -5,7 +5,8 @@
 
 CKEDITOR.editorConfig = function( config ) {
 	// Define changes to default configuration here. For example:
-	config.language = 'vi';
+    config.language = 'vi';
+    
     // config.uiColor = '#AADC6E';
     //config.extraPlugins = 'syntaxhighlight';
     ////config.syntaxhighlight_lang = 'csharp';
@@ -16,7 +17,8 @@ CKEDITOR.editorConfig = function( config ) {
     config.filebrowserUploadUrl = '/assets/admin/js/Plugins/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Files';
     config.filebrowserImageUploadUrl = '/Data';
     config.filebrowserFlashUploadUrl = '/assets/admin/js/Plugins/ckfinder/core/connector/aspx/conector.aspx?command=QuickUpload&type=Flash';
-
+   
+   
     CKFinder.setupCKEditor(null,'/assets/admin/js/Plugins/ckfinder/')
 
 };

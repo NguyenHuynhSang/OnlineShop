@@ -14,6 +14,7 @@ namespace Model.Dao
         public ProductCategoryDao()
         {
             db = new OnlineShopDbContext();
+            
         }
 
 

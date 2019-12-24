@@ -42,10 +42,17 @@ namespace OnlineShop.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Create()
         {
+            var product = new Product();
+            product.Price = 0;
+            product.PromotionPrice = 0;
+            product.Quantity = 0;
             ViewBagCategory();
-            return View();
+            return View(product);
         }
 
+
+
+        [HttpPost, ValidateInput(false)]
         public ActionResult Create(Product product)
         {
             var dao = new ProductDao();
@@ -94,7 +101,8 @@ namespace OnlineShop.Areas.Admin.Controllers
         }
 
 
-        [HttpPost]
+        [HttpPost, ValidateInput(false)]
+
         public ActionResult Edit(Product product)
         {
             ViewBagCategory();

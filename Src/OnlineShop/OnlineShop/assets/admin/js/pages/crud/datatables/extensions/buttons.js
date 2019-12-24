@@ -70,7 +70,7 @@ var KTDatatablesExtensionButtons = function() {
 				'csvHtml5',
 				'pdfHtml5',
 			],
-			processing: true,
+			
 			serverSide: true,
 			ajax: {
 				url: 'https://keenthemes.com/metronic/themes/themes/metronic/dist/preview/inc/api/datatables/demos/server.php',
