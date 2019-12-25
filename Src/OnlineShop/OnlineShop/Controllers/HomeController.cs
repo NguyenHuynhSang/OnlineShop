@@ -61,6 +61,50 @@ namespace OnlineShop.Controllers
             return PartialView(model);
         }
 
-        
+
+        [HttpPost]
+        public JsonResult Update(long id)
+        {
+            var product = new ProductDao().ViewDetail(id);
+            var cart = Session[Common.CommonConstants.CartSession];
+            if (cart != null)
+            {
+                var list = (List<CartItem>)cart;
+
+
+                if (list.Exists(x => x.Product.ID == id))
+                {
+                    foreach (var item in list)
+                    {
+                        if (item.Product.ID == id)
+                        {
+                            item.Quantity += 1;
+                        }
+                    }
+                }
+                else
+                {
+                    var item = new CartItem();
+                    item.Product = product;
+                    item.Quantity = 1;
+                    list.Add(item);
+                }
+
+            }
+            else
+            {
+                var item = new CartItem();
+                item.Product = product;
+                item.Quantity = 1;
+                var list = new List<CartItem>();
+                list.Add(item);
+                Session[Common.CommonConstants.CartSession] = list;
+            }
+
+            return Json(new
+            {
+                status = true
+            });
+        }
     }
 }

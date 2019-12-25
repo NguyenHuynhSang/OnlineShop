@@ -145,12 +145,15 @@
                         </div>
                     </div>
                 </form>
+                <div id="divPartial" class="divPartial">
+                    <ul class="navbar-mini-cart navbar-nav animate-dropdown nav pull-right flip">
+                        @* Cart *@
 
-                <ul class="navbar-mini-cart navbar-nav animate-dropdown nav pull-right flip">
-                    @* Cart *@
-                    @{ Html.RenderAction("HomeCart", "Home");}
-                </ul>
+                        @{ Html.RenderAction("HomeCart", "Home");}
 
+
+                    </ul>
+                </div>
 
             </div>
         </nav>
@@ -358,13 +361,34 @@
                 type: 'POST',
                 success: function (res) {
                     if (res.status == true) {
-                      location.reload();
+                        location.reload();
                     }
                 }
             })
         });
 
     </script>
+
+
+    <script>
+        jQuery('.btnAddCard').off('click').on('click', function (e) {
+            e.preventDefault();
+            var btn = jQuery(this);
+            var id = btn.data('id');
+            jQuery.ajax({
+                url: "Home/Update",
+                data: { id: id },
+                dataType: "json",
+                type: "POST",
+                // data: jQuery("form").serialize(), //if you need to post Model data, use this
+                success: function (result) {
+                    location.reload();
+                }
+            });
+        });
+    </script>
+
+
 </body>
 </html>
 
