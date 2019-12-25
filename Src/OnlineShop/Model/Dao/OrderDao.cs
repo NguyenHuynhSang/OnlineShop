@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,6 +22,20 @@ namespace Model.Dao
             db.SaveChanges();
             return order.ID;
         }
+
+
+        public List<RevenueStatisticViewModel> GetRevenueStatistic(string fromDate,string toDate)
+        {
+            var parameter = new object[]{
+                new SqlParameter("@fromDate",fromDate),
+                   new SqlParameter("@toDate",toDate),
+            };
+          
+            return db.Database.SqlQuery<RevenueStatisticViewModel>("GetRevenueStatistic @fromDate,@toDate", parameter).ToList();
+
+    
+    }
+
         public List<InvoiceViewModel> GetListInvoice()
          {
 
