@@ -65,6 +65,10 @@ namespace OnlineShop.Areas.Admin.Controllers
                 product.MetaTitle = product.MetaTitle.Replace('.', '-');
                 product.MetaTitle = product.MetaTitle.Replace(',', '-');
                 product.MetaTitle = product.MetaTitle.Replace('\'', '-');
+                product.MetaTitle = product.MetaTitle.Replace('(', '-');
+                product.MetaTitle = product.MetaTitle.Replace(')', '-');
+                product.MetaTitle = product.MetaTitle.Replace('+', '-');
+                product.MetaTitle = product.MetaTitle.Replace('?', '-');
                 product.MetaTitle += listProduct.Count();
                 product.Status = true;
              

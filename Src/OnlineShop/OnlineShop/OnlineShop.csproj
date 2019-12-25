@@ -1782,6 +1782,7 @@
     <Content Include="assets\client\js\bootstrap.min.js" />
     <Content Include="assets\client\js\Controller\cartController.js" />
     <Content Include="assets\client\js\Controller\baseController.js" />
+    <Content Include="assets\client\js\Controller\ContactController.js" />
     <Content Include="assets\client\js\echo.min.js" />
     <Content Include="assets\client\js\electro.js" />
     <Content Include="assets\client\js\electro.min.js" />
@@ -2049,6 +2050,8 @@
     <Content Include="Areas\Admin\Views\Product\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\ProductCategory\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Statistical\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Slide\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Slide\Edit.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

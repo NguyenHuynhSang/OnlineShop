@@ -88,8 +88,10 @@
                             <tr>
                                 <td>1</td>
                                 <td>@item.Date.ToString("dd/MMM/yyyy")</td>
-                                <td>@item.Revenunes </td>
-                                <td>@item.Benefis</td>
+                                <td>  @Convert.ToDecimal(@item.Revenunes).ToString("#,##0") VNĐ </td>
+                                <td>
+                                    @Convert.ToDecimal(@item.Benefis).ToString("#,##0") VNĐ
+                                </td>
 
                             </tr>
                         }

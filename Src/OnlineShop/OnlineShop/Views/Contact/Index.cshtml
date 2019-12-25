@@ -5,6 +5,13 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@section jsFooter {
+
+    <script src="/assets/client/js/Controller/ContactController.js"></script>
+   
+
+}
+
 <div id="content" class="site-content" tabindex="-1">
     <div class="container">
 
@@ -28,7 +35,7 @@
                             <div class="col-sm-6">
                                 <div class="wpb_wrapper outer-bottom-xs">
                                     <h2 class="contact-page-title">Để lại lời nhắn</h2>
-                                    <p>Aenean massa diam, viverra vitae luctus sed, gravida eget est. Etiam nec ipsum porttitor, consequat libero eu, dignissim eros. Nulla auctor lacinia enim id mollis. Curabitur luctus interdum eleifend. Ut tempor lorem a turpis fermentum,.</p>
+
                                 </div>
 
                                 <div role="form" class="wpcf7">
@@ -37,32 +44,33 @@
 
                                         <div class="form-group row">
                                             <div class="col-xs-12 col-md-6">
-                                                <label>First name*</label><br />
+                                                <label>Tên*</label><br />
                                                 <span class="wpcf7-form-control-wrap first-name">
-                                                    <input type="text" name="first-name" value="" size="40" class="wpcf7-form-control input-text" aria-required="true" aria-invalid="false" />
+                                                    <input type="text" id="txtName" name="name" value="" size="40" class="wpcf7-form-control input-text" aria-required="true" aria-invalid="false" />
                                                 </span>
                                             </div>
 
                                             <div class="col-xs-12 col-md-6">
-                                                <label>Last name*</label><br />
+                                                <label>Số điện thoại*</label><br />
                                                 <span class="wpcf7-form-control-wrap last-name">
-                                                    <input type="text" name="first-name" value="" size="40" class="wpcf7-form-control input-text" aria-required="true" aria-invalid="false" />
+                                                    <input id="txtTieuDe" type="text" name="tieude first-name" value="" size="40" class="wpcf7-form-control input-text" aria-required="true" aria-invalid="false" />
                                                 </span>
                                             </div>
                                         </div>
 
                                         <div class="form-group">
-                                            <label>Subject</label><br />
-                                            <span class="wpcf7-form-control-wrap subject"><input type="text" name="subject" value="" size="40" class="wpcf7-form-control input-text" aria-invalid="false" /></span>
+                                            <label>Email</label><br />
+                                            <span class="wpcf7-form-control-wrap subject"><input id="txtEmail" type="email" name="email" value="" size="40" class="wpcf7-form-control input-text" aria-invalid="false" /></span>
                                         </div>
 
                                         <div class="form-group">
-                                            <label>Your Message</label><br />
-                                            <span class="wpcf7-form-control-wrap your-message"><textarea name="your-message" cols="40" rows="10" class="wpcf7-form-control input-text wpcf7-textarea" aria-invalid="false"></textarea></span>
+                                            <label>Nội dung</label><br />
+                                            <span class="wpcf7-form-control-wrap your-message"><textarea  id="txtContent"  name="content" cols="40" rows="10" class="wpcf7-form-control input-text wpcf7-textarea" aria-invalid="false"></textarea></span>
                                         </div>
 
                                         <div class="form-group clearfix">
-                                            <p><input type="submit" value="Send Message" class="wpcf7-form-control wpcf7-submit" /></p>
+                                            <button type="submit" id="btnSend" class="button alt btn-primary">Xác nhận</button>
+                                            @*  <p><input id="btnSend" value="Gửi" class="wpcf7-form-control wpcf7-submit" /></p>*@
                                         </div>
                                     </form>
                                 </div>

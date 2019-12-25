@@ -16,8 +16,16 @@ namespace OnlineShop.Areas.Admin.Controllers
 
             if (!String.IsNullOrEmpty(fromDate))
                 fromDate = Convert.ToDateTime(fromDate).ToString("MM/dd/yyyy");
+            else
+            {
+                fromDate = "01/01/2019";
+            }
             if (!String.IsNullOrEmpty(toDate))
                 toDate = Convert.ToDateTime(toDate).ToString("MM/dd/yyyy");
+            else
+            {
+                toDate = "12/01/2100";
+            }
             var model = dao.GetRevenueStatistic(fromDate, toDate);
             ViewBag.FromDate = fromDate;
             ViewBag.ToDate = toDate;

@@ -131,6 +131,7 @@ namespace OnlineShop.Controllers
                 var cart = (List<CartItem>)Session[Common.CommonConstants.CartSession];
                 if (cart==null ||cart.Count<1)
                 {
+                 
                     return Redirect("/hoan-thanh");
                 }
                 var id = new OrderDao().Insert(order);

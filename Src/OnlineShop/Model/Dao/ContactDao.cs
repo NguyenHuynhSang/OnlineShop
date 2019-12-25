@@ -15,6 +15,16 @@ namespace Model.Dao
         {
             db = new OnlineShopDbContext();
         }
+
+        public int InsertFeedBack(Feedback fb)
+        {
+            db.Feedbacks.Add(fb);
+            db.SaveChanges();
+            return fb.ID;
+
+        }
+
+
         public IEnumerable<Contact> ListAllPaging(int page, int pageSize)
         {
             IOrderedQueryable<Contact> contacts = db.Contacts;

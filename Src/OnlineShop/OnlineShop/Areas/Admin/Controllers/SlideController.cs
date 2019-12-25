@@ -34,7 +34,7 @@ namespace OnlineShop.Areas.Admin.Controllers
         public ActionResult Create()
         {
             var slide = new Slide();
-         
+            slide.Status = false;
             return View(slide);
         }
 
@@ -72,6 +72,40 @@ namespace OnlineShop.Areas.Admin.Controllers
 
             return View("Create");
         }
+
+
+        public ActionResult Edit(long id)
+        {
+          
+            var slide = new SlideDao().ViewDetail(id);
+            return View(slide);
+        }
+
+
+        [HttpPost, ValidateInput(false)]
+
+        public ActionResult Edit(Slide product)
+        {
+            var dao = new SlideDao();
+            var model = dao.ListAllForAdmin();
+            if (ModelState.IsValid)
+            {
+
+                var result = dao.Update(product);
+
+                if (result)
+                {
+                    return RedirectToAction("Index", "Slide", model);
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Cập nhật không thành công");
+                }
+            }
+            return View("Edit");
+        }
+
+
 
         void SetStatusViewBag()
         {

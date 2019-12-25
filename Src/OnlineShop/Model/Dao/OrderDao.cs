@@ -26,6 +26,12 @@ namespace Model.Dao
 
         public List<RevenueStatisticViewModel> GetRevenueStatistic(string fromDate,string toDate)
         {
+
+
+       
+
+
+
             var parameter = new object[]{
                 new SqlParameter("@fromDate",fromDate),
                    new SqlParameter("@toDate",toDate),

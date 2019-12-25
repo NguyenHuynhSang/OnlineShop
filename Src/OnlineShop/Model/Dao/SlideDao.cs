@@ -51,6 +51,14 @@ namespace Model.Dao
             return entity.ID;
         }
 
+
+        public Slide ViewDetail(long id)
+        {
+            return db.Slides.Find(id);
+        }
+
+
+
         public bool Update(Slide entity)
         {
             try
@@ -60,7 +68,7 @@ namespace Model.Dao
 
                 slide.Description = entity.Description;
                 slide.Image = entity.Image;
-                slide.Status = entity.Status;
+           
                 slide.ModifiedDate = DateTime.Now;
 
     
