@@ -15,10 +15,12 @@ namespace OnlineShop.Areas.Admin.Controllers
         // GET: Admin/Content
         public ActionResult Index(string searchString, int page = 1, int pageSize = 10)
         {
+            SetViewBag();
             var dao = new ContentDao();
             var model = dao.ListAllPaging(searchString, page, pageSize);
 
             ViewBag.SearchString = searchString;
+       
             return View(model);
         }
 
@@ -41,14 +43,26 @@ namespace OnlineShop.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(Content model)
+        public ActionResult Edit(Content content)
         {
+            SetViewBag();
+            var dao = new ContentDao();
+            var model = dao.ListAllPaging(1,10);
             if (ModelState.IsValid)
             {
 
+                var result = dao.update(content);
+
+                if (result)
+                {
+                    return RedirectToAction("Index", "Content", model);
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Cập nhật không thành công");
+                }
             }
-            SetViewBag(model.CategoryID);
-            return View();
+            return View("Edit");
         }
 
         [HttpPost]

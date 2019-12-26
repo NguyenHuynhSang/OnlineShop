@@ -98,9 +98,7 @@
                             <th>Mô tả</th>
                             <th>Nhóm tin tức</th>
                             <th>Ngày tạo</th>
-                            <th>Status</th>
                             <th>#</th>
-                            <th>Edit</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -116,9 +114,7 @@
                                 </td>
                                 <td>@item.Description</td>
                                 <td>@item.CategoryID</td>
-                                <td>@item.CreatedDate</td>
-                                <td>@item.Status</td>
-                                <td><a href="#" class="btn-active" data-id="@item.ID">@Html.Raw(item.Status ? "<strong>Kích hoạt</strong>" : "Khoá")</a></td>
+                                <td>@item.CreatedDate</td>                  
                                 <td>
                                     <a href="/Admin/Content/ViewDetail/@item.ID" class="btn btn-sm btn-clean btn-icon btn-icon-md" title="Xem chi tiết">
                                         <i class="la la-eye"></i>

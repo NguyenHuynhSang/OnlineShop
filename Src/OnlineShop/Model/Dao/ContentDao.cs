@@ -150,7 +150,67 @@ namespace Model.Dao
             return db.Contents.OrderByDescending(x => x.CreatedDate).Take(top).ToList();
         }
 
+        public bool update(Content entity)
+        {
+            try
+            {
+                var account = db.Contents.Find(entity.ID);
+                account.Name = entity.Name;
+                account.Language = entity.Language;
+                account.CategoryID = entity.CategoryID;
+                account.CreatedBy = entity.CreatedBy;
+                account.CreatedDate = entity.CreatedDate;
+                account.Description = entity.Description;
+                account.Detail = entity.Detail;
+                account.Image = entity.Image;
+                account.MetaDescriptions = entity.MetaDescriptions;
+                account.MetaKeywords = entity.MetaKeywords;
+                account.MetaTitle = entity.MetaTitle;
+                account.ModifiedBy = entity.ModifiedBy;
+                account.Status = entity.Status;
+                account.Tags = entity.Tags;
+                account.TopHot = entity.TopHot;
+                account.ViewCount = entity.ViewCount;
+                account.Warranty = entity.Warranty;
+                account.ModifiedDate = DateTime.Now;
 
+                //Xử lý alias
+                if (string.IsNullOrEmpty(account.MetaTitle))
+                {
+                    account.MetaTitle = ToUnsignString(account.Name);
+                }
+                account.CreatedDate = DateTime.Now;
+                db.SaveChanges();
+
+                //Xử lý tag
+                if (!string.IsNullOrEmpty(account.Tags))
+                {
+                    this.RemoveAllContentTag(account.ID);
+                    string[] tags = account.Tags.Split(',');
+                    foreach (var tag in tags)
+                    {
+                        var tagId = ToUnsignString(tag);
+                        var existedTag = this.CheckTag(tagId);
+
+                        //insert to to tag table
+                        if (!existedTag)
+                        {
+                            this.InsertTag(tagId, tag);
+                        }
+
+                        //insert to content tag
+                        this.InsertContentTag(account.ID, tagId);
+
+                    }
+                }
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
 
         public long Edit(Content content)
         {
