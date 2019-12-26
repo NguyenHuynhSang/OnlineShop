@@ -5,7 +5,7 @@
 <li class="nav-item dropdown">
     <a href="cart.html" class="nav-link" data-toggle="dropdown">
         <i class="ec ec-shopping-bag"></i>
-        <span class="cart-items-count count">@Model.Count()</span>
+        <span class="cart-items-count count">@Model.Sum(x=>x.Quantity)</span>
         <span class="cart-items-total-price total-price">
             <span class="amount">
                 @{decimal? price = 0;}
