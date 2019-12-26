@@ -22,7 +22,6 @@ namespace OnlineShop.Controllers
             var list = new List<CartItem>();
             if (cart != null)
             {
-
                  list = (List<CartItem>)cart;
             }
    
@@ -116,6 +115,15 @@ namespace OnlineShop.Controllers
             return View(list);
         }
 
+        [HttpGet]
+        public ActionResult Success()
+        {
+            Session[Common.CommonConstants.CartSession]=null;
+      
+            return View();
+        }
+
+        
         [HttpPost]
         public ActionResult Payment(string shipName,string phone,string address,string email,string note)
         {

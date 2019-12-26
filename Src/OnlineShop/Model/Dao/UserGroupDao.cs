@@ -59,6 +59,20 @@ namespace Model.Dao
         }
 
 
+        public void Delete(string id)
+        {
+            var credentials = db.Credentials.Where(x => x.UserGroupID == id);
+            db.Credentials.RemoveRange(credentials);
+            db.SaveChanges();
+        }
+
+
+        public bool InsertCredentials(Credential entity)
+        {
+            db.Credentials.Add(entity);
+            db.SaveChanges();
+            return true;
+        }
 
     }
 }
