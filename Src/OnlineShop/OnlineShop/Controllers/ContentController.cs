@@ -30,7 +30,7 @@ namespace OnlineShop.Controllers
             ViewBag.Last = totalPage;
             ViewBag.Next = page + 1;
             ViewBag.Prev = page - 1;
-       
+
             return View(model);
         }
 
@@ -43,16 +43,16 @@ namespace OnlineShop.Controllers
             ViewBag.tag = new ContentDao().ListAllTag();
             return View(model);
         }
-
-        public ActionResult Tag(string tagId, int page = 1, int pageSize = 10)
+        public ActionResult Category(long id)
         {
-            var model = new ContentDao().ListAllByTag(tagId, page, pageSize);
+            int page = 1; int pageSize = 10;
+            var model = new ContentDao().ListAllByCategory(id);
             int totalRecord = 0;
-
             ViewBag.Total = totalRecord;
-            ViewBag.Page = page;
-
-            ViewBag.Tag = new ContentDao().GetTag(tagId);
+            ViewBag.Page = 1;
+            ViewBag.category = new CategoriesDao().ListAll();
+            ViewBag.recentpost = new ContentDao().ListRecentPost();
+            ViewBag.tags = new ContentDao().ListAllTag();
             int maxPage = 5;
             int totalPage = 0;
 
@@ -63,7 +63,10 @@ namespace OnlineShop.Controllers
             ViewBag.Last = totalPage;
             ViewBag.Next = page + 1;
             ViewBag.Prev = page - 1;
+
             return View(model);
         }
     }
 }
+
+      

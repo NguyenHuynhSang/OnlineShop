@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Model.EntityFramework.Content>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Category";
     ViewBag.Header = "right-sidebar blog-grid";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -116,12 +116,12 @@
                         foreach (var category in recentpost)
                         {
                             <li>
-                            <a class="post-thumbnail" href="/Content/Detail/@category.ID"><img width="150" height="150" src=@category.Image class="wp-post-image" alt="1"></a>
-                            <div class="post-content">
-                                <a class="post-name" href="/Content/Detail/@category.ID">@category.Name</a>
-                                <span class="post-date">@category.CreatedDate</span>
-                            </div>
-                                </li>
+                                <a class="post-thumbnail" href="/Content/Detail/@category.ID"><img width="150" height="150" src=@category.Image class="wp-post-image" alt="1"></a>
+                                <div class="post-content">
+                                    <a class="post-name" href="/Content/Detail/@category.ID">@category.Name</a>
+                                    <span class="post-date">@category.CreatedDate</span>
+                                </div>
+                            </li>
                         }
                     }
                 </ul>
@@ -130,8 +130,8 @@
                 <h3 class="widget-title">Danh sách tag</h3>
                 <div class="tagcloud">
                     @{
-                        var tag = (List<Model.EntityFramework.Tag>)ViewBag.tag;
-                        foreach (var item in tag)
+                        var xtag = (List<Model.EntityFramework.Tag>)ViewBag.tags;
+                        foreach (var item in xtag)
                         {
                             <a href="/Content/Tag/@item.ID" class="" title="10 topics" style="font-size: 22pt;">@item.Name</a>
                         }
