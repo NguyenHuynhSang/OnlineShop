@@ -54,7 +54,7 @@ namespace Model.Dao
             entity.Status = order.Status;
             db.SaveChanges();
         }
-        public List<InvoiceViewModel> GetListInvoice()
+        public List<InvoiceViewModel> GetListInvoice(int? mahd = null, string tenkh = "", string sdt = "", string email = "", string createDate = "", int? status = null)
          {
 
             List<Order> order = db.Orders.ToList();
@@ -75,6 +75,32 @@ namespace Model.Dao
                                     }
                                     ).ToList(),
                                 };
+
+            if(!String.IsNullOrEmpty(tenkh))
+            {
+                userViewModel = userViewModel.Where(x => x.order.ShipName.Contains(tenkh));
+            }
+
+            if (!String.IsNullOrEmpty(sdt))
+            {
+                userViewModel = userViewModel.Where(x => x.order.ShipMobile.Contains(sdt));
+            }
+            if (!String.IsNullOrEmpty(email))
+            {
+                userViewModel = userViewModel.Where(x => x.order.ShipMobile.Contains(email));
+            }
+            if (mahd != null) 
+            {
+                userViewModel = userViewModel.Where(x => x.order.ID==mahd);
+
+            }
+
+            if (status != null)
+            {
+                userViewModel = userViewModel.Where(x => x.order.Status == status);
+
+            }
+
 
             return userViewModel.OrderByDescending(x=>x.order.CreatedDate).ToList();
         }

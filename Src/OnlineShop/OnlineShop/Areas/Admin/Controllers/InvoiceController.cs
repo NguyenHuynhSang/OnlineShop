@@ -10,10 +10,15 @@ namespace OnlineShop.Areas.Admin.Controllers
     public class InvoiceController : Controller
     {
         // GET: Admin/Invoice
-        public ActionResult Index()
+        public ActionResult Index(int? mahd=null,string tenkh="",string sdt="",string email="",string createDate="",int? status=null)
         {
             SetInvoiceStatusViewBag();
-            var model = new OrderDao().GetListInvoice();
+
+            ViewBag.MaHD = mahd;
+            ViewBag.Name = tenkh;
+            ViewBag.SDT = sdt;
+            ViewBag.Email = email;
+            var model = new OrderDao().GetListInvoice(mahd,tenkh,sdt,email,createDate,status);
             return View(model);
         }
 
@@ -60,7 +65,6 @@ namespace OnlineShop.Areas.Admin.Controllers
             var order = dao.Detail(ID);
             order.Status = (int)status;
             dao.ChangeStatus(order);
-            
             var model = dao.GetListInvoice();
             SetInvoiceStatusViewBag();
             return RedirectToAction("Index", "Invoice", model);

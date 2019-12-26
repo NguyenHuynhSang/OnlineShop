@@ -34,7 +34,7 @@
                                 <i class="flaticon2-plus"></i> Add New
                             </button>*@
 
-                        @Html.ActionLink("Thêm tài khoản", "Create", "Account", null, new { @class = "flaticon2-plus btn btn-brand btn-icon-sm" })
+                      
 
 
                     </div>
@@ -44,28 +44,28 @@
 
 
         <div class="kt-portlet__body">
-            @using (Html.BeginForm("Index", "Account", FormMethod.Get, new { @class = "kt-form kt-form--fit kt-margin-b-20" }))
+            @using (Html.BeginForm("Index", "Invoice", FormMethod.Get, new { @class = "kt-form kt-form--fit kt-margin-b-20" }))
             {
 
                 <!--begin: Search Form -->
 
                 <div class="row kt-margin-b-20">
                     <div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
-                        <label>Tên đăng nhập:</label>
-                        <input name="userName" type="text" class="form-control kt-input" placeholder="Nhận tên đăng nhập" data-col-index="0">
+                        <label>Mã hóa đơn:</label>
+                        <input value="@ViewBag.MaHD" name="mahd" type="number" class="form-control kt-input" placeholder="Nhận mã hóa đơn" data-col-index="0">
                     </div>
                     <div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
-                        <label>Họ tên:</label>
-                        <input name="name" type="text" class="form-control kt-input" placeholder="Nhập họ tên" data-col-index="1">
+                        <label>Tên khách hàng:</label>
+                        <input value="@ViewBag.Name" name="tenkh" type="text" class="form-control kt-input" placeholder="Nhập tên khách hàng" data-col-index="1">
                     </div>
 
                     <div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
                         <label>Số điện thoại:</label>
-                        <input name="sdt" type="text" class="form-control kt-input" placeholder="E.g: 37000-300" data-col-index="1">
+                        <input  value="@ViewBag.SDT" name="sdt" type="text" class="form-control kt-input" placeholder="E.g: 37000-300" data-col-index="1">
                     </div>
                     <div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
                         <label>Email:</label>
-                        <input name="email" type="email" class="form-control kt-input" placeholder="E.g: 37000-300" data-col-index="1">
+                        <input value="@ViewBag.Email" name="email" type="email" class="form-control kt-input" placeholder="E.g: 37000-300" data-col-index="1">
                     </div>
                     @*<div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
                             <label>Agent:</label>
@@ -85,10 +85,8 @@
                     </div>
                     <div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
                         <label>Trạng thái:</label>
-                        @*   @Html.DropDownList("status", (SelectList)ViewBag.Status, "--Chọn trạng thái--", htmlAttributes: new { @class = "form-control kt-input" })*@
-                        @*<select class="form-control kt-input" data-col-index="6">
-                                <option value="">Select</option>
-                            </select>*@
+                           @Html.DropDownList("status", (SelectList)ViewBag.Invoice, "--Chọn trạng thái--", htmlAttributes: new { @class = "form-control kt-input" })
+                      
                     </div>
                     <div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
                         <label>Type:</label>
@@ -108,7 +106,7 @@
                             </span>
                         </button>
                         &nbsp;&nbsp;
-                        <a href="Admin/Account/Index" class="btn btn-secondary btn-secondary--icon">
+                        <a href="Admin/Invoice/Index" class="btn btn-secondary btn-secondary--icon">
                             <i class="la la-close"></i>
                             <span>Reset</span>
                         </a>
@@ -127,6 +125,7 @@
                         <th>Ngày tạo</th>
                         <th>Tên người mua</th>
                         <th>Số điện thoại</th>
+                        <th>Email</th>
                         <th>Tổng tiền</th>
                         <th>Ghi chú</th>
                         <th>Trạng thái đơn</th>
@@ -136,111 +135,112 @@
                 <tbody>
                     @foreach (var item in Model)
                     {
-                        <tr>
-                            @{
-                                int toltalMoney = item.orderDetails.Sum(x => (int)x.product.Price * x.orderDetail.Quantity.GetValueOrDefault(0));
-                            }
+                    <tr>
+                        @{
+                            int toltalMoney = item.orderDetails.Sum(x => (int)x.product.Price * x.orderDetail.Quantity.GetValueOrDefault(0));
+                        }
 
 
 
-                            <td>@item.order.ID</td>
-                            <td>@item.order.CreatedDate</td>
-                            <td>@item.order.ShipName</td>
-                            <td>@item.order.ShipMobile</td>
-                            <td>@Convert.ToDecimal(toltalMoney).ToString("#,##0")</td>
-                            <td>@item.order.Note</td>
-                            @if (item.order.Status == 1)
-                            {
-                                <td>
-                                    <span class="kt-badge kt-badge--bold kt-badge--inline kt-badge--pill">Chờ duyệt</span>
+                        <td>@item.order.ID</td>
+                        <td>@item.order.CreatedDate.Value.ToString("dd/MMM/yyyy hh:mm:ss")</td>
+                        <td>@item.order.ShipName</td>
+                        <td>@item.order.ShipMobile</td>
+                        <td>@item.order.ShipEmail</td>
+                        <td>@Convert.ToDecimal(toltalMoney).ToString("#,##0")</td>
+                        <td>@item.order.Note</td>
+                        @if (item.order.Status == 1)
+                        {
+                            <td>
+                                <span class="kt-badge kt-badge--bold kt-badge--inline kt-badge--pill">Chờ duyệt</span>
 
-                                </td>
-                            }
-                            else if (item.order.Status == 2)
-                            {
-                                <td>
-                                    <span class="kt-badge kt-badge--notify kt-badge--inline kt-badge--pill">Đã duyệt</span>
+                            </td>
+                        }
+                        else if (item.order.Status == 2)
+                        {
+                            <td>
+                                <span class="kt-badge kt-badge--notify kt-badge--inline kt-badge--pill">Đã duyệt</span>
 
-                                </td>
-                            }
-                            else if (item.order.Status == 3)
-                            {
-                                <td>
-                                    <span class="kt-badge kt-badge--light kt-badge--inline kt-badge--pill">Đang Giao hàng</span>
+                            </td>
+                        }
+                        else if (item.order.Status == 3)
+                        {
+                            <td>
+                                <span class="kt-badge kt-badge--light kt-badge--inline kt-badge--pill">Đang Giao hàng</span>
 
-                                </td>
-                            }
-                            else if (item.order.Status == 4)
-                            {
-                                <td>
-                                    <span class="kt-badge kt-badge--brand kt-badge--inline kt-badge--pill">Thành công</span>
+                            </td>
+                        }
+                        else if (item.order.Status == 4)
+                        {
+                            <td>
+                                <span class="kt-badge kt-badge--brand kt-badge--inline kt-badge--pill">Thành công</span>
 
-                                </td>
-                            }
-                            else if (item.order.Status == 5)
-                            {
-                                <td>
-                                    <span class="kt-badge kt-badge--danger kt-badge--inline kt-badge--pill">Hủy đơn</span>
+                            </td>
+                        }
+                        else if (item.order.Status == 5)
+                        {
+                            <td>
+                                <span class="kt-badge kt-badge--danger kt-badge--inline kt-badge--pill">Hủy đơn</span>
 
-                                </td>
-                            }
+                            </td>
+                        }
 
 
                         <td>
 
-                                
+
                             <a href="/Admin/Invoice/Detail/@item.order.ID" class="btn btn-sm btn-clean btn-icon btn-icon-md" title="Xem chi tiết">
                                 <i class="la la-eye"></i>
                             </a>
-                            
-                                    <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Duyệt đơn
-                                    </button>
-                                    <div class="dropdown-menu">
-                                        @if (item.order.Status == 1)
-                                        {
-                                            <a class="dropdown-item  btn-icon-md" href="/Admin/Invoice/ChangeStatus?ID=@item.order.ID&status=2">
-                                                <i class="la la-check"></i>
-                                                Duyệt
-                                            </a>
-                                        }
 
-                                        @if (item.order.Status == 2)
-                                        {
-                                            <a class="dropdown-item" href="/Admin/Invoice/ChangeStatus?ID=@item.order.ID&status=3">Vận chuyển</a>
-                                        }
-                                        @if (item.order.Status == 3)
-                                        {
-                                            <a class="dropdown-item" href="/Admin/Invoice/ChangeStatus?ID=@item.order.ID&status=4">
-                                                <i class="la la-dollar"></i>
-                                                Hoàn thành
-                                            </a>
-                                        }
+                            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Duyệt đơn
+                            </button>
+                            <div class="dropdown-menu">
+                                @if (item.order.Status == 1)
+                                {
+                                    <a class="dropdown-item  btn-icon-md" href="/Admin/Invoice/ChangeStatus?ID=@item.order.ID&status=2">
+                                        <i class="la la-check"></i>
+                                        Duyệt
+                                    </a>
+                                }
 
-                                        @if (item.order.Status != 4)
-                                        {
-                                            <a class="dropdown-item" onclick="return confirm('Bạn có chắc muốn hủy đơn này?');" href="/Admin/Invoice/ChangeStatus?ID=@item.order.ID&status=5">
-                                                <i class="la la-close"></i>
-                                                Hủy đơn
-                                            </a>
-                                        }
+                                @if (item.order.Status == 2)
+                                {
+                                    <a class="dropdown-item" href="/Admin/Invoice/ChangeStatus?ID=@item.order.ID&status=3">Vận chuyển</a>
+                                }
+                                @if (item.order.Status == 3)
+                                {
+                                    <a class="dropdown-item" href="/Admin/Invoice/ChangeStatus?ID=@item.order.ID&status=4">
+                                        <i class="la la-dollar"></i>
+                                        Hoàn thành
+                                    </a>
+                                }
+
+                                @if (item.order.Status != 4)
+                                {
+                                    <a class="dropdown-item" onclick="return confirm('Bạn có chắc muốn hủy đơn này?');" href="/Admin/Invoice/ChangeStatus?ID=@item.order.ID&status=5">
+                                        <i class="la la-close"></i>
+                                        Hủy đơn
+                                    </a>
+                                }
 
 
-                                    </div>
+                            </div>
                         </td>
-                        </tr>
+                    </tr>
                     }
                 </tbody>
                 <tfoot>
                     <tr>
-                        <th>STT</th>
-                        <th>Tên đăng nhập</th>
-                        <th>Mật khẩu</th>
-                        <th>Họ tên</th>
-                        <th>Điện thoại</th>
+                        <th>Mã hóa đơn</th>
+                        <th>Ngày tạo</th>
+                        <th>Tên người mua</th>
+                        <th>Số điện thoại</th>
                         <th>Email</th>
-                        <th>Status</th>
-                        <th>Type</th>
+                        <th>Tổng tiền</th>
+                        <th>Ghi chú</th>
+                        <th>Trạng thái đơn</th>
                         <th>Action</th>
                     </tr>
                 </tfoot>
