@@ -108,12 +108,14 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @{ var count = 0;}
                     @foreach (var item in Model)
                     {
+                        count++;
                         long ParrentID = 0;
                         if (@item.ParentID.HasValue) { ParrentID = item.ParentID.Value; }
                     <tr>
-                        <td>1</td>
+                        <td>@count</td>
                         <td>
                             @item.Name
                         </td>
