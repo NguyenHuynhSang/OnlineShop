@@ -1,0 +1,1 @@
+* Chọn số lượng mua hàng chưa nhưng giỏ hàng vẫn là 1 (ví dụ số lượng 4 thì giỏ hàng vẫn để là 1
