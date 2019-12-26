@@ -7,7 +7,7 @@
 <div id="content" class="site-content" tabindex="-1">
     <div class="container">
 
-        <nav itemprop="breadcrumb" class="woocommerce-breadcrumb"><a href="home.html">Home</a><span class="delimiter"><i class="fa fa-angle-right"></i></span><a href="#">Tin tức</a><span class="delimiter"><i class="fa fa-angle-right"></i></span>@Model.Name</nav>
+        <nav itemprop="breadcrumb" class="woocommerce-breadcrumb"><a href="home.html">Home</a><span class="delimiter"><i class="fa fa-angle-right"></i></span><a href="/tin-tuc">Tin tức</a><span class="delimiter"><i class="fa fa-angle-right"></i></span>@Model.Name</nav>
 
         <div id="primary" class="content-area">
             <main id="main" class="site-main">
@@ -182,7 +182,7 @@
                         var categories = (List<Model.EntityFramework.Category>)ViewBag.category;
                         foreach (var category in categories)
                         {
-                            <li><a href="/Category/@category.ID">@category.Name</a></li>
+                            <li><a href="~/Content/Category/@category.ID">@category.Name</a></li>
                         }
                     }
                 </ul>

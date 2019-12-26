@@ -2106,6 +2106,7 @@
     <Content Include="Views\Product\Category.cshtml" />
     <Content Include="Views\Product\Search.cshtml" />
     <Content Include="Views\Cart\Success.cshtml" />
+    <Content Include="Views\Content\Category.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
