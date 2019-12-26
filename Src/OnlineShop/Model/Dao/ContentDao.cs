@@ -73,35 +73,6 @@ namespace Model.Dao
             return model.OrderByDescending(x => x.CreatedDate).ToPagedList(page, pageSize);
         }
 
-        public IEnumerable<Content> ListAllByCategory(long categoryid)
-        {
-            var model = (from a in db.Contents
-                         join b in db.Categories
-                         on a.CategoryID equals b.ID
-                         where b.ID == categoryid
-                         select new
-                         {
-                             Name = a.Name,
-                             MetaTitle = a.MetaTitle,
-                             Image = a.Image,
-                             Description = a.Description,
-                             CreatedDate = a.CreatedDate,
-                             CreatedBy = a.CreatedBy,
-                             ID = a.ID
-
-                         }).AsEnumerable().Select(x => new Content()
-                         {
-                             Name = x.Name,
-                             MetaTitle = x.MetaTitle,
-                             Image = x.Image,
-                             Description = x.Description,
-                             CreatedDate = x.CreatedDate,
-                             CreatedBy = x.CreatedBy,
-                             ID = x.ID
-                         });
-            return model.OrderByDescending(x => x.CreatedDate).ToPagedList(1, 10);
-        }
-
         public Content GetByID(long id)
         {
             return db.Contents.Find(id);
