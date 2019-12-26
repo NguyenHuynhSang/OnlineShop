@@ -1,6 +1,6 @@
 # OnlineShop
 
-#Bug
+# Bug
 * Chọn số lượng mua hàng chưa nhưng giỏ hàng vẫn là 1 (ví dụ số lượng 4 thì giỏ hàng vẫn để là 1)
 ![image](https://user-images.githubusercontent.com/26776857/71477035-76771d80-281a-11ea-93a8-cdfc7875384e.png)
 
