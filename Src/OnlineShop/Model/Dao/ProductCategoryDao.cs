@@ -144,7 +144,7 @@ namespace Model.Dao
 
         public List<ProductCategory> ListParentCategorys()
         {
-            return db.ProductCategories.Where(x => x.Status == true && x.ParentID == null).OrderBy(x => x.CreatedDate).ToList();
+            return db.ProductCategories.Where(x=>x.ParentID == null).OrderBy(x => x.CreatedDate).ToList();
         }
 
 

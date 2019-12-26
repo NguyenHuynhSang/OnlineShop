@@ -61,45 +61,67 @@ namespace OnlineShop.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Create()
         {
+            var dao = new RolesDao();
+            var items = dao.GetListRoles();
+            var model = new RoleSelectViewModel();
+            ViewBag.ListRole = items.Select(x => new SelectListItem
+            {
+                Value = x.ID,
+                Text = "item " + x.Name,
+                Selected = true
+            }) ;
+           
+            return View(model);
+        }
+
+        [HttpPost, ValidateInput(false)]
+        public ActionResult Create(RoleSelectViewModel  slide)
+        {
+            var dao = new SlideDao();
+
+
+          
+            return View("Create");
+        }
+
+        public ActionResult Edit(string id)
+        {
+
+            //var group = new UserGroupDao().ViewDetail(id);
+            //var model = new RoleSelectViewModel();
+            //var items = dao.GetListRoles();
+            //ViewBag.ListRole = items.Select(x => new SelectListItem
+            //{
+            //    Value = x.ID,
+            //    Text = "item " + x.Name
+            //});
 
             return View();
         }
 
 
-        [HttpPost]
-        public ActionResult Create(User user)
+        [HttpPost, ValidateInput(false)]
+
+        public ActionResult Edit(Slide product)
         {
-            var dao = new UserGroupDao();
+            var dao = new SlideDao();
+            var model = dao.ListAllForAdmin();
+            if (ModelState.IsValid)
+            {
 
-            //var listProduct = dao.GetListProduct();
-      
-            //if (ModelState.IsValid)
-            //{
-       
-            //    long id = dao.Insert(product);
-            //    if (id > 0)
-            //    {
+                var result = dao.Update(product);
 
-            //        // chuyển hướng trang về admin/product/index
-            //        var result = dao.GetListProduct();
-            //        return RedirectToAction("Index", "UserGroup", result);
-            //    }
-            //    else
-            //    {
-            //        ModelState.AddModelError("", "Thêm không thành công");
-            //    }
-
-
-
-            //}
-            //else
-            //{
-            //    ModelState.AddModelError("", "Form lỗi");
-            //}
-
-            return View("Create");
+                if (result)
+                {
+                    return RedirectToAction("Index", "Slide", model);
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Cập nhật không thành công");
+                }
+            }
+            return View("Edit");
         }
-
 
 
     }

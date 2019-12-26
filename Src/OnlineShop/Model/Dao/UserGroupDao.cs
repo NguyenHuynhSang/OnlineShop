@@ -29,6 +29,11 @@ namespace Model.Dao
         }
 
 
+        public UserGroup ViewDetail(string ID)
+        {
+            return db.UserGroups.Find(ID);
+        }
+
         public List<UserRoleByGroupModel> GetRoleByGroup()
         {
 

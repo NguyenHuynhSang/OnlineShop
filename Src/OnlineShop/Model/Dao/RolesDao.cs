@@ -16,11 +16,11 @@ namespace Model.Dao
             db = new OnlineShopDbContext();
         }
 
-        public async Task<List<Role>> GetListRoles()
+        public List<Role> GetListRoles()
         {
-            var myTask = Task.Run(() => db.Roles.ToList());
-            List<Role> roles = await myTask;
-            return roles;
+            var model = db.Roles.ToList();
+         
+            return model.ToList();
         }
 
 

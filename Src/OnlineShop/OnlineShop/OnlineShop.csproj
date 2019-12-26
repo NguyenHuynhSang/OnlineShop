@@ -2054,6 +2054,7 @@
     <Content Include="Areas\Admin\Views\Slide\Edit.cshtml" />
     <Content Include="ClassDiagram1.cd" />
     <Content Include="Areas\Admin\Views\Menu\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\UserGroup\Create.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
