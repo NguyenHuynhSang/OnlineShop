@@ -16,6 +16,12 @@ namespace Model.Dao
         {
             db = new OnlineShopDbContext();
         }
+
+        public Order Detail(long id)
+        {
+            return db.Orders.Find(id);
+        }
+
         public long Insert(Order order)
         {
             db.Orders.Add(order);
@@ -42,6 +48,12 @@ namespace Model.Dao
     
     }
 
+        public void ChangeStatus(Order order)
+        {
+            var entity = db.Orders.Find(order.ID);
+            entity.Status = order.Status;
+            db.SaveChanges();
+        }
         public List<InvoiceViewModel> GetListInvoice()
          {
 

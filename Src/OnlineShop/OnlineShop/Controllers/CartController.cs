@@ -126,6 +126,7 @@ namespace OnlineShop.Controllers
             order.ShipMobile = phone;
             order.ShipAddress = address;
             order.Note = note;
+            order.Status = 1;
             try
             {
                 var cart = (List<CartItem>)Session[Common.CommonConstants.CartSession];

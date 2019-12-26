@@ -19,5 +19,11 @@ namespace Model.Dao
         {
             return db.Menus.Where(x => x.TypeID == groupId && x.Status == true).OrderBy(x => x.DisplayOrder).ToList();
         }
+
+
+        public List<Menu> ListAll()
+        {
+            return db.Menus.OrderBy(x => x.DisplayOrder).ToList();
+        }
     }
 }

@@ -12,6 +12,7 @@ namespace OnlineShop.Areas.Admin.Controllers
         // GET: Admin/Invoice
         public ActionResult Index()
         {
+            SetInvoiceStatusViewBag();
             var model = new OrderDao().GetListInvoice();
             return View(model);
         }
@@ -19,7 +20,7 @@ namespace OnlineShop.Areas.Admin.Controllers
         public ActionResult Detail(long ID)
         {
             var model = new OrderDao().ViewDetail(ID);
-          
+
             return View(model);
         }
 
@@ -27,16 +28,47 @@ namespace OnlineShop.Areas.Admin.Controllers
         void SetStatusViewBag()
         {
             ViewBag.Status = new SelectList(new[]
-    {
+              {
                                     new { ID="1", Status="Chờ duyệt" },
                                     new { ID="2", Status="Đã duyệt" },
                                     new { ID="3", Status="Vận chuyển " },
                                     new { ID="4", Status="Thành công" },
                                     new { ID="5", Status="Hủy đơn" },
-                                }, "ID", "Status", true);
+               }, "ID", "Status", true);
 
         }
 
 
+        void SetInvoiceStatusViewBag()
+        {
+            ViewBag.Invoice = new SelectList(new[]
+              {
+                                    new { ID="1", Status="Chờ duyệt" },
+                                    new { ID="2", Status="Đã duyệt" },
+                                    new { ID="3", Status="Vận chuyển " },
+                                    new { ID="4", Status="Hoàn thành" },
+                                    new { ID="5", Status="Hủy đơn" },
+               }, "ID", "Status", true);
+
+        }
+
+
+        [HttpGet]
+        public ActionResult ChangeStatus(long ID,long status)
+        {
+            var dao = new OrderDao();
+            var order = dao.Detail(ID);
+            order.Status = (int)status;
+            dao.ChangeStatus(order);
+            
+            var model = dao.GetListInvoice();
+            SetInvoiceStatusViewBag();
+            return RedirectToAction("Index", "Invoice", model);
+        }
+        
+    
+
     }
+
+
 }
