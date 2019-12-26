@@ -16,7 +16,7 @@
                 {
                     <article class="post format-standard hentry">
 
-                        <div class="media-attachment"><a href="/content/Detail/@item.ID"><img width="870" height="460" src=@item.Image class="wp-post-image" alt="8"></a></div>
+                        <div class="media-attachment"><a href="blog-single.html"><img width="870" height="460" src=@item.Image class="wp-post-image" alt="8"></a></div>
                         <div class="content-body">
                             <header class="entry-header">
                                 <h1 class="entry-title" itemprop="name headline"><a href="blog-single.html" rel="bookmark">@item.MetaTitle</a></h1>
@@ -103,7 +103,7 @@
                         var categories = (List<Model.EntityFramework.Category>)ViewBag.category;
                         foreach (var category in categories)
                         {
-                            <li><a href="/Content/Category/@category.ID">@category.Name</a></li>
+                            <li><a href="/Content/@category.ID">@category.Name</a></li>
                         }
                     }
                 </ul>
