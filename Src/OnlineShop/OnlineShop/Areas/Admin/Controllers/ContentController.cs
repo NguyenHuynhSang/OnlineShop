@@ -13,13 +13,14 @@ namespace OnlineShop.Areas.Admin.Controllers
     public class ContentController : Controller
     {
         // GET: Admin/Content
-        public ActionResult Index(string searchString, int page = 1, int pageSize = 10)
+        public ActionResult Index(string name,string title, int page = 1, int pageSize = 10)
         {
-            SetViewBag();
+            
             var dao = new ContentDao();
-            var model = dao.ListAllPaging(searchString, page, pageSize);
-
-            ViewBag.SearchString = searchString;
+            var model = dao.ListAllPaging(name,title, page, pageSize);
+            SetViewBag();
+            ViewBag.name = name;
+            ViewBag.title = title;
        
             return View(model);
         }
@@ -70,7 +71,7 @@ namespace OnlineShop.Areas.Admin.Controllers
         public ActionResult Create(Content model)
         {
             if (ModelState.IsValid)
-            {
+            {    
                 var session = (UserLogin)Session[CommonConstants.USER_SESSTION];
                 model.CreatedBy = session.UserName;
                 new ContentDao().Create(model);
@@ -85,6 +86,12 @@ namespace OnlineShop.Areas.Admin.Controllers
         {
             var dao = new CategoriesDao();
             ViewBag.CategoryID = new SelectList(dao.ListAll(), "ID", "Name", selectedId);
+        }
+
+        public void SetViewBagCategory(long? selectedId = null)
+        {
+            var dao = new CategoriesDao();
+            ViewBag.CategoryID = dao.ListAll();
         }
 
         [HttpGet]

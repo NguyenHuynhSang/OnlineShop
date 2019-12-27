@@ -19,13 +19,16 @@ namespace Model.Dao
         {
             db = new OnlineShopDbContext();
         }
-
-        public IEnumerable<Content> ListAllPaging(string searchString, int page, int pageSize)
+                public IEnumerable<Content> ListAllPaging(string name,string title, int page, int pageSize)
         {
             IQueryable<Content> model = db.Contents;
-            if (!string.IsNullOrEmpty(searchString))
+            if (!string.IsNullOrEmpty(name))
             {
-                model = model.Where(x => x.Name.Contains(searchString) || x.Name.Contains(searchString));
+                model = model.Where(x => x.Name.Contains(name) || x.Name.Contains(name));
+            }
+            if (!string.IsNullOrEmpty(title))
+            {
+                model = model.Where(x => x.Description.Contains(title) || x.Description.Contains(title));
             }
 
             return model.OrderByDescending(x => x.CreatedDate).ToPagedList(page, pageSize);
