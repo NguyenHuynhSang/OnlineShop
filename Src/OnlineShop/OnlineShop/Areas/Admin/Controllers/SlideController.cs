@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace OnlineShop.Areas.Admin.Controllers
 {
-    public class SlideController : Controller
+    public class SlideController : BaseController
     {
         // GET: Admin/Slide
      
@@ -18,6 +18,8 @@ namespace OnlineShop.Areas.Admin.Controllers
 
             SetStatusViewBag();
             var dao = new SlideDao().ListAllForAdmin(name,status);
+
+            SetAlert("Load thành công", "success");
             return View(dao);
         }
 
@@ -60,6 +62,7 @@ namespace OnlineShop.Areas.Admin.Controllers
                 else
                 {
                     ModelState.AddModelError("", "Thêm không thành công");
+                    SetAlert("Thêm không thành công", "error");
                 }
 
 
@@ -68,6 +71,7 @@ namespace OnlineShop.Areas.Admin.Controllers
             else
             {
                 ModelState.AddModelError("", "Form lỗi");
+                SetAlert("Form lỗi", "error");
             }
 
             return View("Create");
@@ -100,6 +104,7 @@ namespace OnlineShop.Areas.Admin.Controllers
                 else
                 {
                     ModelState.AddModelError("", "Cập nhật không thành công");
+                    SetAlert("Cập nhật không thành công", "error");
                 }
             }
             return View("Edit");

@@ -8,7 +8,7 @@ using Model.EntityFramework;
 
 namespace OnlineShop.Areas.Admin.Controllers
 {
-    public class ContentCategoryController : Controller
+    public class ContentCategoryController : BaseController
     {
         // GET: Admin/Category
         public ActionResult Index()
@@ -16,6 +16,8 @@ namespace OnlineShop.Areas.Admin.Controllers
             SetUserGroupViewBag();
             SetViewBag();
             SetStatusViewBag();
+
+            SetAlert("Load thành công", "success");
             var dao = new CategoriesDao();
             var listCategory = dao.ListAll();
             return View(listCategory);
@@ -50,6 +52,7 @@ namespace OnlineShop.Areas.Admin.Controllers
                 else
                 {
                     ModelState.AddModelError("", "Thêm danh muc không thành công");
+                    SetAlert("Thêm danh muc không thành công", "error");
                 }
             }
             return View("Create");
@@ -89,6 +92,7 @@ namespace OnlineShop.Areas.Admin.Controllers
                 else
                 {
                     ModelState.AddModelError("", "Cập nhật không thành công");
+                    SetAlert("Cập nhật không thành công", "error");
                 }
             }
             return View("Edit");

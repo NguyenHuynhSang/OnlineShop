@@ -10,7 +10,7 @@ using OnlineShop.Common;
 
 namespace OnlineShop.Areas.Admin.Controllers
 {
-    public class ContentController : Controller
+    public class ContentController : BaseController
     {
         // GET: Admin/Content
         public ActionResult Index(string name,string title, int page = 1, int pageSize = 10)
@@ -21,7 +21,8 @@ namespace OnlineShop.Areas.Admin.Controllers
             SetViewBag();
             ViewBag.name = name;
             ViewBag.title = title;
-       
+
+            SetAlert("Load thành công", "success");
             return View(model);
         }
 
@@ -61,6 +62,7 @@ namespace OnlineShop.Areas.Admin.Controllers
                 else
                 {
                     ModelState.AddModelError("", "Cập nhật không thành công");
+                    SetAlert("Cập nhật không thành công", "error");
                 }
             }
             return View("Edit");

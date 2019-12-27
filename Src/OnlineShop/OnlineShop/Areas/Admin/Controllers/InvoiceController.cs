@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace OnlineShop.Areas.Admin.Controllers
 {
-    public class InvoiceController : Controller
+    public class InvoiceController : BaseController
     {
         // GET: Admin/Invoice
         public ActionResult Index(int? mahd=null,string tenkh="",string sdt="",string email="",string createDate="",int? status=null)
@@ -19,6 +19,8 @@ namespace OnlineShop.Areas.Admin.Controllers
             ViewBag.SDT = sdt;
             ViewBag.Email = email;
             var model = new OrderDao().GetListInvoice(mahd,tenkh,sdt,email,createDate,status);
+
+            SetAlert("Load thành công", "success");
             return View(model);
         }
 

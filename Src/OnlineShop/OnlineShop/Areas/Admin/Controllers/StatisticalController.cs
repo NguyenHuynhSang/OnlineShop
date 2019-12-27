@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace OnlineShop.Areas.Admin.Controllers
 {
-    public class StatisticalController : Controller
+    public class StatisticalController : BaseController
     {
         // GET: Admin/Statistical
         public ActionResult Index(string fromDate = "", string toDate = "")
@@ -29,6 +29,8 @@ namespace OnlineShop.Areas.Admin.Controllers
             var model = dao.GetRevenueStatistic(fromDate, toDate);
             ViewBag.FromDate = fromDate;
             ViewBag.ToDate = toDate;
+
+            SetAlert("Load thành công", "success");
             return View(model);
         }
     }
