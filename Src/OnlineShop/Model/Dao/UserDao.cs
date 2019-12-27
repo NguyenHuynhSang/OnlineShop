@@ -34,6 +34,7 @@ namespace Model.Dao
                 }
                 user.Address = entity.Address;
                 user.Email = entity.Email;
+                user.GroupID = entity.GroupID;
                 user.Phone = entity.Phone;
                 user.ModifiedBy = entity.ModifiedBy;
                 user.ModifiedDate = DateTime.Now;

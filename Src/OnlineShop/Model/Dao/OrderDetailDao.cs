@@ -14,6 +14,11 @@ namespace Model.Dao
         {
             db = new OnlineShopDbContext();
         }
+
+        public List<OrderDetail> ListAllByOrder(long OrderId)
+        {
+            return db.OrderDetails.Where(x => x.OrderID == OrderId).ToList();
+        }
         public bool Insert(OrderDetail detail)
         {
             try

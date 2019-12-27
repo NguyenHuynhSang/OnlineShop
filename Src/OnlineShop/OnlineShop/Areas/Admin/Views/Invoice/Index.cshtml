@@ -76,11 +76,11 @@
                     <div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
                         <label>Ngày tạo:</label>
                         <div class="input-daterange input-group" id="kt_datepicker">
-                            <input type="date" class="form-control kt-input" name="start" placeholder="From" data-col-index="5" />
+                            <input  type="date" class="form-control kt-input" name="fromDate" placeholder="From" data-col-index="5" />
                             <div class="input-group-append">
                                 <span class="input-group-text"><i class="la la-ellipsis-h"></i></span>
                             </div>
-                            <input type="date" class="form-control kt-input" name="end" placeholder="To" data-col-index="5" />
+                            <input type="date" class="form-control kt-input" name="toDate" placeholder="To" data-col-index="5" />
                         </div>
                     </div>
                     <div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
@@ -217,7 +217,7 @@
                                     </a>
                                 }
 
-                                @if (item.order.Status != 4)
+                                @if (item.order.Status != 4 && item.order.Status != 5)
                                 {
                                     <a class="dropdown-item" onclick="return confirm('Bạn có chắc muốn hủy đơn này?');" href="/Admin/Invoice/ChangeStatus?ID=@item.order.ID&status=5">
                                         <i class="la la-close"></i>

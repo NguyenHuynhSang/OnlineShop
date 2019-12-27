@@ -15,6 +15,10 @@ namespace Model.Dao
             db = new OnlineShopDbContext();
         }
 
+        public Product Detail(long id)
+        {
+            return db.Products.Find(id);
+        }
         public List<ProductViewModel> ListByCategoryId(long categoryID, ref int totalRecord, int pageIndex = 1, int pageSize = 2, int oderBy=-1)
         {
          
@@ -191,7 +195,7 @@ namespace Model.Dao
             return db.Products.Count();
         }
 
-        public List<ProductViewModel> GetListProduct(string name = "", long? masp = null, bool? status = null, int? CategoryID = null,int? minQ=null,int? maxQ=null)
+        public List<ProductViewModel> GetListProduct(string name = "", string masp = "", bool? status = null, int? CategoryID = null,int? minQ=null,int? maxQ=null)
         {
 
             List<Product> products = db.Products.ToList();
@@ -210,9 +214,9 @@ namespace Model.Dao
                 productViewModel=productViewModel.Where(x => x.product.Name.Contains(name));
             }
 
-            if (masp!=null)
+            if (!String.IsNullOrEmpty(masp))
             {
-                productViewModel = productViewModel.Where(x => x.product.ID==masp);
+                productViewModel = productViewModel.Where(x => x.product.Code != null&& x.product.Code.Contains(masp));
             }
 
 
@@ -352,8 +356,9 @@ namespace Model.Dao
                 product.OrginalPrice = entity.OrginalPrice;
                 product.Quantity = entity.Quantity;
                 product.Content = entity.Content;
+                product.Code = entity.Code;
                 product.Description = entity.Description;
-              product.CategoryID = entity.CategoryID;
+                 product.CategoryID = entity.CategoryID;
                 product.Warranty = entity.Warranty;
                 product.ModifiedBy = entity.ModifiedBy;
                 product.ModifiedDate = DateTime.Now;

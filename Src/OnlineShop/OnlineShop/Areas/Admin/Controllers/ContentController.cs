@@ -13,14 +13,15 @@ namespace OnlineShop.Areas.Admin.Controllers
     public class ContentController : Controller
     {
         // GET: Admin/Content
-        public ActionResult Index(string searchString, int page = 1, int pageSize = 10)
+        public ActionResult Index(int page = 1, int pageSize =10 ,string name ="",string description="")
         {
+
             SetViewBag();
             var dao = new ContentDao();
-            var model = dao.ListAllPaging(searchString, page, pageSize);
+            var model = dao.ListAllPaging(page, pageSize,name,description);
 
-            ViewBag.SearchString = searchString;
-       
+            ViewBag.name = name;
+            ViewBag.description = description;
             return View(model);
         }
 

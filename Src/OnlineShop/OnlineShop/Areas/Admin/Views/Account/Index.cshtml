@@ -89,16 +89,7 @@
                         </div>*@
                 </div>
                 <div class="row kt-margin-b-20">
-                    <div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
-                        <label>Ngày tạo:</label>
-                        <div class="input-daterange input-group" id="kt_datepicker">
-                            <input type="date" class="form-control kt-input" name="start" placeholder="From" data-col-index="5" />
-                            <div class="input-group-append">
-                                <span class="input-group-text"><i class="la la-ellipsis-h"></i></span>
-                            </div>
-                            <input type="date" class="form-control kt-input" name="end" placeholder="To" data-col-index="5" />
-                        </div>
-                    </div>
+               
                     <div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
                         <label>Trạng thái:</label>
                         @Html.DropDownList("status", (SelectList)ViewBag.Status, "--Chọn trạng thái--", htmlAttributes: new { @class = "form-control kt-input" })
@@ -150,10 +141,13 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @{ var count = 0;}
                     @foreach (var item in Model)
                     {
+                        count++;
                         <tr>
-                            <td>1</td>
+                            
+                            <td>@count</td>
                             <td>@item.user.UserName</td>
                             <td>@item.user.Password </td>
                             <td>@item.user.Name</td>

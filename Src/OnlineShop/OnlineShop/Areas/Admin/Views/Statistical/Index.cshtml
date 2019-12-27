@@ -81,12 +81,14 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @{ var count = 0;}
                     @if (Model.Count() > 0)
                     {
                         foreach (var item in Model)
                         {
+                            count++;
                             <tr>
-                                <td>1</td>
+                                <td>@count</td>
                                 <td>@item.Date.ToString("dd/MMM/yyyy")</td>
                                 <td>  @Convert.ToDecimal(@item.Revenunes).ToString("#,##0") VNĐ </td>
                                 <td>

@@ -118,9 +118,16 @@ namespace OnlineShop.Controllers
         [HttpGet]
         public ActionResult Success()
         {
-            Session[Common.CommonConstants.CartSession]=null;
-      
-            return View();
+            long id=(long)TempData["ID"];
+            ViewBag.Order = new OrderDao().Detail(id);
+            var cart = Session[Common.CommonConstants.CartSession];
+            var list = new List<CartItem>();
+            if (cart != null)
+            {
+
+                list = (List<CartItem>)cart;
+            }
+            return View(list);
         }
 
         
@@ -138,12 +145,14 @@ namespace OnlineShop.Controllers
             try
             {
                 var cart = (List<CartItem>)Session[Common.CommonConstants.CartSession];
+               
                 if (cart==null ||cart.Count<1)
                 {
                  
                     return Redirect("/hoan-thanh");
                 }
                 var id = new OrderDao().Insert(order);
+                TempData["ID"] = id;
                 var detailDao = new OrderDetailDao();
             
                 foreach (var item in cart)

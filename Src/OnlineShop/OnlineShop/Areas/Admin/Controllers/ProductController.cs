@@ -11,7 +11,7 @@ namespace OnlineShop.Areas.Admin.Controllers
     public class ProductController : Controller
     {
         // GET: Admin/Product
-        public ActionResult Index(string name = "", long? masp =null,bool? status=null,int? CategoryID=null,string rank="")
+        public ActionResult Index(string name = "", string masp ="",bool? status=null,int? CategoryID=null,string rank="")
         {
             SetViewBagAllCategory();
             int? minQ=0;

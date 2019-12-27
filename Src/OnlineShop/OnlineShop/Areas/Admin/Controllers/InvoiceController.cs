@@ -10,15 +10,21 @@ namespace OnlineShop.Areas.Admin.Controllers
     public class InvoiceController : Controller
     {
         // GET: Admin/Invoice
-        public ActionResult Index(int? mahd=null,string tenkh="",string sdt="",string email="",string createDate="",int? status=null)
+        public ActionResult Index(int? mahd=null,string tenkh="",string sdt="",string email="",string createDate="",int? status=null,string fromDate="",string toDate="")
         {
             SetInvoiceStatusViewBag();
 
+            if (!String.IsNullOrEmpty(fromDate))
+                fromDate = Convert.ToDateTime(fromDate).ToString("MM/dd/yyyy");
+       
+            if (!String.IsNullOrEmpty(toDate))
+                toDate = Convert.ToDateTime(toDate).ToString("MM/dd/yyyy");
+        
             ViewBag.MaHD = mahd;
             ViewBag.Name = tenkh;
             ViewBag.SDT = sdt;
             ViewBag.Email = email;
-            var model = new OrderDao().GetListInvoice(mahd,tenkh,sdt,email,createDate,status);
+            var model = new OrderDao().GetListInvoice(mahd,tenkh,sdt,email,createDate,status,fromDate,toDate);
             return View(model);
         }
 
@@ -62,9 +68,20 @@ namespace OnlineShop.Areas.Admin.Controllers
         public ActionResult ChangeStatus(long ID,long status)
         {
             var dao = new OrderDao();
+            var pdao = new ProductDao();
             var order = dao.Detail(ID);
+            var oDetail = new OrderDetailDao().ListAllByOrder(ID);
             order.Status = (int)status;
             dao.ChangeStatus(order);
+            if (status==5)
+            {
+                foreach (var item in oDetail)
+                {
+                    var product = pdao.Detail(item.ProductID);
+                    product.Quantity += item.Quantity.Value;
+                    pdao.ChangeQuantity(product);
+                }
+            }
             var model = dao.GetListInvoice();
             SetInvoiceStatusViewBag();
             return RedirectToAction("Index", "Invoice", model);

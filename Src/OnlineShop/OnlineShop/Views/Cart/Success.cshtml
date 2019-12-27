@@ -1,8 +1,145 @@
-﻿
+﻿@model List<OnlineShop.Models.CartItem>
+
+
 @{
-    ViewBag.Title = "Success";
+    ViewBag.Title = "Hoàn thành";
+    ViewBag.Header = "page home page-template-default";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var custommer=(Model.EntityFramework.Order)ViewBag.Order;
 }
 
-<h2>Success</h2>
 
+@section jsFooter{
+
+    <script>
+
+   
+
+    </script>
+}
+
+
+
+
+<div id="content" class="site-content" tabindex="-1">
+    <div class="container">
+
+        <nav class="woocommerce-breadcrumb"><a href="/">Trang chủ</a><span class="delimiter"><i class="fa fa-angle-right"></i></span>Thanh toán</nav>
+
+        <div id="primary" class="content-area">
+            <main id="main" class="site-main">
+                <article class="page type-page status-publish hentry">
+                    <header class="entry-header"><h1 itemprop="name" class="entry-title">Thanh toán Thành công</h1></header><!-- .entry-header -->
+                    <header class="entry-header"><h3 itemprop="name" class="entry-title">Chúng tôi sẽ sớm liên lạc với bạn</h3></header><!-- .entry-header -->
+
+
+
+                    <div class="col2-set">
+                        <div class="col-1">
+                            <div class="woocommerce-billing-fields">
+
+                                <h3>Thông tin khách hàng</h3>
+
+
+                                <p id="billing_company_field" class="form-row form-row form-row-wide"><label class="" for="billing_company">Họ Tên</label><span id="txtName" name="shipName" type="text" class="txtName input-text ">@custommer.ShipName</span></p>
+                                <div id="errorBoxName"></div>
+
+                                <p id="billing_email_field" class="form-row form-row form-row-first validate-required validate-email"><label class="" for="billing_email">Email Address <abbr title="required" class="required">*</abbr></label><span name="email" type="email" value="" placeholder="" class="input-text ">@custommer.ShipEmail </span></p>
+
+                                <p id="billing_phone_field" class="form-row form-row form-row-last validate-required validate-phone"><label class="" for="billing_phone">Số điện thoại <abbr title="required" class="required">*</abbr></label><span id="txtPhone" name="phone" type="tel" value="" placeholder="" class="input-text ">@custommer.ShipMobile </span></p><div class="clear"></div>
+                                <div id="errorBoxPhone"></div>
+                                <p id="billing_country_field" class="form-row form-row form-row-wide validate-required validate-email"><label class="" for="billing_country">Địa chỉ <abbr title="required" class="required">*</abbr></label><span id="txtAddress" name="address" type="text" value="" placeholder="" class="input-text ">@custommer.ShipAddress</span></p><div class="clear"></div>
+                                <div id="errorBoxAddress"></div>
+
+
+                            </div>
+                        </div>
+
+                        <div class="col-2">
+                            <h3>Ghi chú  </h3>
+                            <div class="woocommerce-shipping-fields">
+                                <h3 id="ship-to-different-address"></h3>
+
+                                <p id="order_comments_field" class="form-row form-row notes"><label class="" for="order_comments">Ghi chú</label><span name="note" cols="5" rows="2" placeholder="Ghi chú thêm tại đây" class="input-text">@custommer.Note  </span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 id="order_review_heading">Đơn hàng của bạn</h3>
+
+                    <div class="woocommerce-checkout-review-order" id="order_review">
+                        <table class="shop_table woocommerce-checkout-review-order-table">
+                            <thead>
+                                <tr>
+                                    <th class="product-name">Sản phẩm</th>
+                                    <th class="product-total">Tổng tiền</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr class="cart_item">
+                                        <td class="product-name">
+                                            @item.Product.Name&nbsp;
+                                            <strong class="product-quantity">× @item.Quantity</strong>
+                                        </td>
+                                        <td class="product-total">
+
+
+                                            <span class="amount">
+
+                                                @if (@item.Product.PromotionPrice == 0)
+                                                {
+                                                    @Convert.ToDecimal((item.Product.Price.GetValueOrDefault(0) * item.Quantity)).ToString("#,##0")
+                                                }
+                                                else
+                                                {
+                                                    @Convert.ToDecimal((item.Product.PromotionPrice.GetValueOrDefault(0) * item.Quantity)).ToString("#,##0")
+                                                }
+
+
+                                            </span>
+                                        </td>
+                                    </tr>
+                                }
+
+
+                            </tbody>
+                            <tfoot>
+
+
+
+
+                                <tr class="order-total">
+                                    <th>Tổng tiền</th>
+                                    <td>
+                                        <strong>
+                                            <span class="amount">
+                                                @{decimal? price = 0;}
+
+                                                @Convert.ToDecimal((Model.Sum(x => price = x.Product.PromotionPrice == 0 ? x.Product.Price : x.Product.PromotionPrice * x.Quantity))).ToString("#,##0")
+
+                                            </span>
+                                        </strong>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+
+                        <div class="woocommerce-checkout-payment" id="payment">
+                            <ul class="wc_payment_methods payment_methods methods"></ul>
+                            <div class="form-row place-order">
+
+                                <p class="form-row terms wc-terms-and-conditions">
+
+                                </p>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </article>
+            </main><!-- #main -->
+        </div><!-- #primary -->
+    </div><!-- .container -->
+</div><!-- #content -->

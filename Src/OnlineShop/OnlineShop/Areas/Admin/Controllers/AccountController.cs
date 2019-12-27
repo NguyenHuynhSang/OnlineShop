@@ -63,7 +63,7 @@ namespace OnlineShop.Areas.Admin.Controllers
         [HaveCredential(RoleID = "ADD_USER")]
         public ActionResult Create()
         {
-
+            SetUserGroupViewBag();
             return View();
         }
 
@@ -80,6 +80,7 @@ namespace OnlineShop.Areas.Admin.Controllers
         [HaveCredential(RoleID = "ADD_USER")]
         public ActionResult Create(User user)
         {
+            SetUserGroupViewBag();
             SetStatusViewBag();
             var dao = new UserDao();
 
@@ -116,6 +117,7 @@ namespace OnlineShop.Areas.Admin.Controllers
         [HaveCredential(RoleID = "EDIT_USER")]
         public ActionResult Edit(long id)
         {
+            SetUserGroupViewBag();
             var account = new UserDao().ViewDetail(id);
             return View(account);
         }
@@ -125,6 +127,7 @@ namespace OnlineShop.Areas.Admin.Controllers
         [HaveCredential(RoleID = "EDIT_USER")]
         public ActionResult Edit(User user)
         {
+            SetUserGroupViewBag();
             SetStatusViewBag();
             var dao = new UserDao();
             var model = dao.GetListUsers();

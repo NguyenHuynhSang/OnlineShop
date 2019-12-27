@@ -85,12 +85,9 @@
         }
 
 
-        var editor = CKEDITOR.replace('txtContent', {
-            customConfig: '/assets/admin/js/plugins/ckeditor/config.js',
+      
 
-        });
-
-        var editor2 = CKEDITOR.replace('txtContent2', {
+        var editor3 = CKEDITOR.replace('txtContent3', {
             customConfig: '/assets/admin/js/plugins/ckeditor/config.js',
         });
 
@@ -309,7 +306,7 @@
                                 @Html.LabelFor(model => model.Content, htmlAttributes: new { @class = "col-xl-3 col-lg-3 col-form-label" })
                                 <div class="col-lg-9 col-xl-6">
                                     @*<input class="form-control" type="password" placeholder="Nhập mật khẩu">*@
-                                    @Html.TextAreaFor(model => model.Content, new { htmlAttributes = new { @class = "form-control" }, id = "txtContent2" })
+                                    @Html.TextAreaFor(model => model.Content, new { htmlAttributes = new { @class = "form-control" }, id = "txtContent3" })
                                     @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
                                 </div>
                             </div>

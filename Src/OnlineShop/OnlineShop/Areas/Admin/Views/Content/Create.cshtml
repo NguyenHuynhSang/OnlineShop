@@ -9,8 +9,11 @@
 
 @section jsFooter{
     <script>
-         var count = 1;
-    
+        var count = 1;
+     
+        var editor2 = CKEDITOR.replace('txtContent2', {
+            customConfig: '/assets/admin/js/plugins/ckeditor/config.js',
+        });
         $('#btnSelectImage').on('click', function (e) {
             e.preventDefault();
             var finder = new CKFinder();
@@ -27,9 +30,7 @@
             finder.popup();
 
         })
-        var editor = CKEDITOR.replace('txtContent', {
-            customConfig: '/assets/admin/js/plugins/ckeditor/config.js',
-        });
+    
     </script>
 }
 
@@ -120,7 +121,8 @@
                             <div class="form-group row">
                                 @Html.LabelFor(model => model.Detail, htmlAttributes: new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
-                                    @Html.TextBoxFor(model => model.Detail, new { htmlAttributes = new { @class = "form-control" }, id = "txtContent" })
+                                    @Html.TextAreaFor(model => model.Detail, new { htmlAttributes = new { @class = "form-control" }, id = "txtContent2" })
+                                
                                     @Html.ValidationMessageFor(model => model.Detail, "", new { @class = "text-danger" })
                                 </div>
                             </div>
