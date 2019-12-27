@@ -68,7 +68,7 @@ namespace Model.Dao
 
                 slide.Description = entity.Description;
                 slide.Image = entity.Image;
-           
+                slide.Link = entity.Link;
                 slide.ModifiedDate = DateTime.Now;
 
     

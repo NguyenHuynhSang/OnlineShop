@@ -103,7 +103,7 @@
                         <th>Ngày tạo</th>
                         <th>Người tạo</th>
                         <th>Status</th>
-                        <th>Hiển thị trang chủ</th>
+                        @*<th>Hiển thị trang chủ</th>*@
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -137,9 +137,7 @@
                         </td>
                         <td> @item.CreatedDate.Value.ToString("dd/MM/yyyy")</td>
                         <td> @item.CreatedBy</td>
-                        <td> @item.Status</td>
-
-                        @if (item.ShowOnHome!=null && item.ShowOnHome.Value)
+                      @if (item.Status!=null && item.Status.Value)
                         {
                             <td>
                                 <span class="kt-badge kt-badge--brand kt-badge--inline kt-badge--pill">Hiển thị</span>
@@ -154,6 +152,7 @@
                             </td>
                         }
 
+                      
                         <td>
                             <a href="/Admin/ProductCategory/ViewDetail/@item.ID" class="btn btn-sm btn-clean btn-icon btn-icon-md" title="Xem chi tiết">
                                 <i class="la la-eye"></i>
@@ -179,7 +178,7 @@
                         <th>Ngày tạo</th>
                         <th>Người tạo</th>
                         <th>Status</th>
-                        <th>Hiển thị trang chủ</th>
+                  
                         <th>Action</th>
                     </tr>
                 </tfoot>

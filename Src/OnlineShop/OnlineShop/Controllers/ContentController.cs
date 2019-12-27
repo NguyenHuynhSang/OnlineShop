@@ -65,5 +65,27 @@ namespace OnlineShop.Controllers
             ViewBag.Prev = page - 1;
             return View(model);
         }
+        public ActionResult Category(long id)
+        {
+            int page = 1; int pageSize = 10;
+            var model = new ContentDao().ListAllByCategory(id);
+            int totalRecord = 0;
+
+            ViewBag.Total = totalRecord;
+            ViewBag.Page = page;
+
+            ViewBag.Page = 1;
+            ViewBag.category = new CategoriesDao().ListAll();
+            ViewBag.recentpost = new ContentDao().ListRecentPost();
+            ViewBag.tags = new ContentDao().ListAllTag();
+            int maxPage = 5;
+            int totalPage = 0;
+
+            ViewBag.Last = totalPage;
+            ViewBag.Next = page + 1;
+            ViewBag.Prev = page - 1;
+
+            return View(model);
     }
+}
 }

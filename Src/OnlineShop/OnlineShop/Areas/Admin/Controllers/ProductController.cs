@@ -46,6 +46,9 @@ namespace OnlineShop.Areas.Admin.Controllers
             product.Price = 0;
             product.PromotionPrice = 0;
             product.Quantity = 0;
+            product.IsHot = false;
+            product.IncludedVAT = true;
+            product.OrginalPrice = 0;
             ViewBagCategory();
             return View(product);
         }

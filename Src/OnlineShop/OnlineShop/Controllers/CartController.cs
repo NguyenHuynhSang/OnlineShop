@@ -162,6 +162,12 @@ namespace OnlineShop.Controllers
                    
                     orderDetail.Quantity = item.Quantity;
                     detailDao.Insert(orderDetail);
+
+                    var dao = new ProductDao();
+                    item.Product.Quantity -= item.Quantity;
+                    var product = item.Product;
+                    dao.ChangeQuantity(product);
+
                 }
 
             }
