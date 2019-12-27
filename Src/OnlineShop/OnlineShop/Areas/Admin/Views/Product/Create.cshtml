@@ -256,7 +256,7 @@
                                         <div class="input-group-prepend"><span class="input-group-text"><i class="la la-money"></i></span></div>
                                         @*        <input type="text" class="form-control" placeholder="Nhập số điện thoại" aria-describedby="basic-addon1">*@
 
-                                        @Html.EditorFor(model => model.OrginalPrice, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0", @step = "1000", @Value = "0" }})
+                                        @Html.EditorFor(model => model.OrginalPrice, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0", @step = "1000" }})
 
                                         @Html.ValidationMessageFor(model => model.OrginalPrice, "", new { @class = "text-danger" })
                                     </div>
@@ -273,7 +273,7 @@
                                         <div class="input-group-prepend"><span class="input-group-text"><i class="la la-money"></i></span></div>
                                         @*        <input type="text" class="form-control" placeholder="Nhập số điện thoại" aria-describedby="basic-addon1">*@
 
-                                        @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0", @step = "1000", @Value = "0", @id = "txtPrice" }, id = "txtPrice" })
+                                        @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0", @step = "1000", @id = "txtPrice" }, id = "txtPrice" })
 
                                         @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
                                     </div>
@@ -285,7 +285,7 @@
                                 <div class="col-lg-9 col-xl-6">
                                     <div class="input-group">
                                         <div class="input-group-prepend"><span class="input-group-text"><i class="la la-money"></i></span></div>
-                                        @Html.EditorFor(model => model.PromotionPrice, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0", @step = "1000", @Value = "0", @id = "txtPromotionPrice" }, id = "txtPromotionPrice" })
+                                        @Html.EditorFor(model => model.PromotionPrice, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0", @step = "1000", @id = "txtPromotionPrice" }, id = "txtPromotionPrice" })
                                         @Html.ValidationMessageFor(model => model.PromotionPrice, "", new { @class = "text-danger" })
                                         <div id="errorBox">
 

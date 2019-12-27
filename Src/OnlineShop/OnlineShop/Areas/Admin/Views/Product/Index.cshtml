@@ -55,7 +55,7 @@
                 <div class="row kt-margin-b-20">
                     <div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
                         <label>Mã sản phẩm:</label>
-                        <input value="@ViewBag.Masp"  name="masp" type="text" class="form-control kt-input" placeholder="Nhận mã sản phẩm" data-col-index="0">
+                        <input value="@ViewBag.Masp" name="masp" type="text" class="form-control kt-input" placeholder="Nhận mã sản phẩm" data-col-index="0">
                     </div>
                     <div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
                         <label>Tên sản phẩm:</label>
@@ -73,7 +73,7 @@
 
                 </div>
                 <div class="row kt-margin-b-20">
-                   
+
 
                     <div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
                         <label>Số lượng</label>
@@ -85,16 +85,7 @@
                         </div>
                     </div>
 
-
-                    <div class="col-lg-9 kt-margin-b-10-tablet-and-mobile">
-                        <label>Giá</label>
-                        <div class="col-lg-8 col-md-9 col-sm-12">
-                            @Html.Hidden("minQ", (int)ViewBag.minQ)
-                            @Html.Hidden("maxQ", (int)ViewBag.maxQ)
-                            <input class="form-control kt-input" name="rank" type="hidden" id="kt_slider_4" />
-
-                        </div>
-                    </div>
+    
                 </div>
                 <div class="kt-separator kt-separator--md kt-separator--dashed"></div>
                 <div class="row">
@@ -155,7 +146,7 @@
 
                                     Giá Gốc
                                     <li style="color:blue">
-                                        @Convert.ToDecimal(item.product.Price).ToString("#,##0")
+                                        @Convert.ToDecimal(item.product.OrginalPrice).ToString("#,##0")
                                     </li>
                                     Giá bán
                                     <li style="color:blue">
@@ -166,9 +157,8 @@
                                         @Convert.ToDecimal(item.product.PromotionPrice).ToString("#,##0")
                                     </li>
                                 </ul>
-                
-                                <ul>
-                                </ul>
+
+                                <ul></ul>
 
                                 @*@item.product.Price*@
                             </td>
@@ -190,16 +180,24 @@
 
 
                             <td>
-                                <span class="kt-badge kt-badge--brand kt-badge--inline kt-badge--pill">
-                                @item.product.Status   
-                                </span>
+
+                                @if (@item.product.Status == true)
+                                {
+                                    <span class="kt-badge kt-badge--success kt-badge--inline kt-badge--pill">Hiển thị</span>
+                                }
+                                else if (@item.product.Status == false)
+                                {
+                                    <span class="kt-badge kt-badge--danger kt-badge--inline kt-badge--pill">Ẩn</span>
+                                }
+
+
 
                             </td>
                             <td>@item.category.Name</td>
 
 
                             <td>
-                          
+
 
                                 <a href="/Admin/Product/Edit/@item.product.ID" class="btn btn-sm btn-clean btn-icon btn-icon-md" title="Chỉnh sửa">
                                     <i class="la la-edit"></i>

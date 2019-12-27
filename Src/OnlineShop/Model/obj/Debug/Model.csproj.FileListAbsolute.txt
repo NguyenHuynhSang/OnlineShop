@@ -74,4 +74,3 @@ D:\hoc\ASP.net\oad\OnlineShop\Src\OnlineShop\Model\obj\Debug\Model.csproj.CoreCo
 D:\hoc\ASP.net\oad\OnlineShop\Src\OnlineShop\Model\obj\Debug\Model.csproj.CopyComplete
 D:\hoc\ASP.net\oad\OnlineShop\Src\OnlineShop\Model\obj\Debug\Model.dll
 D:\hoc\ASP.net\oad\OnlineShop\Src\OnlineShop\Model\obj\Debug\Model.pdb
-D:\hoc\ASP.net\oad\báo cáo\OnlineShop\OnlineShop\Src\OnlineShop\Model\bin\Debug\EntityFramework.xml

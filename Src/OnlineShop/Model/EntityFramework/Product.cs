@@ -36,6 +36,7 @@
         public string MoreImages { get; set; }
 
 
+        [Required]
 
         [DisplayName("Giá gốc")]
         [DisplayFormat(DataFormatString = "{0:0.##}", ApplyFormatInEditMode = true)]
@@ -45,6 +46,8 @@
         public decimal? OrginalPrice { get; set; }
 
 
+
+        [Required]
         [DisplayName("Giá bán")]
         [DisplayFormat(DataFormatString = "{0:0.##}", ApplyFormatInEditMode = true)]
 

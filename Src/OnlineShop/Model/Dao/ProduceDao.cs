@@ -326,6 +326,15 @@ namespace Model.Dao
             return entity.ID;
         }
 
+
+        public void ChangeQuantity(Product entity)
+        {
+            var product = db.Products.Find(entity.ID);
+            product.Quantity = entity.Quantity;
+            db.SaveChanges();
+
+        }
+
         public bool Update(Product entity)
         {
             try
