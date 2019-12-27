@@ -17,8 +17,10 @@ namespace OnlineShop.Controllers
 
         public ActionResult Detail(long id)
         {
+
             var product = new ProductDao().ViewDetail(id);
             ViewBag.Category = new ProductCategoryDao().ViewDetail(product.CategoryID);
+            ViewBag.RelativeProduct = new ProductDao().ListRelativeProduct(product.CategoryID);
             return View(product);
         }
             
@@ -28,8 +30,6 @@ namespace OnlineShop.Controllers
             ViewBag.Category = category;
 
             ViewBag.Option = orderby;
- 
-
 
             int totalRecord = 0;
             var dao = new ProductDao();
@@ -37,7 +37,6 @@ namespace OnlineShop.Controllers
             ViewBag.NewProducts = dao.ListNewProduct(5);
             ViewBag.Total = totalRecord;
             ViewBag.Page = page;
-
             int maxPage = 5;
             int totalPage = 0;
 

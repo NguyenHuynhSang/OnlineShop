@@ -56,6 +56,33 @@ namespace Model.Dao
         }
 
 
+
+        public List<ProductViewModel> ListRelativeProduct(long categoryID)
+        {
+
+            List<Product> products = db.Products.ToList();
+            List<ProductCategory> groups = db.ProductCategories.ToList();
+    
+                groups = groups.Where(x => x.ID == categoryID).ToList();
+            
+       
+
+            var model = from u in products
+                        join g in groups
+                        on u.CategoryID equals g.ID
+                        select new ProductViewModel
+                        {
+                            product = u,
+                            category = g,
+                        };
+
+            return model.Take(10).ToList();
+
+
+        }
+
+
+
         public List<ProductViewModel> Search(string keyWord, ref int totalRecord, int pageIndex = 1, int pageSize = 2, int oderBy = -1)
         {
 
