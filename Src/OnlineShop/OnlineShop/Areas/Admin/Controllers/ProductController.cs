@@ -8,14 +8,16 @@ using System.Web.Mvc;
 
 namespace OnlineShop.Areas.Admin.Controllers
 {
-    public class ProductController : Controller
+    public class ProductController : BaseController
     {
         // GET: Admin/Product
+
         public ActionResult Index(string name = "", string masp ="",bool? status=null,int? CategoryID=null,string rank="")
+
         {
             SetViewBagAllCategory();
-            int? minQ=0;
-            int? maxQ=1000;
+            int? minQ = 0;
+            int? maxQ = 1000;
 
             if (!String.IsNullOrEmpty(rank))
             {
@@ -26,7 +28,7 @@ namespace OnlineShop.Areas.Admin.Controllers
                 quantity[0] = minQ.Value;
                 quantity[1] = maxQ.Value;
 
-                
+
             }
             ViewBag.minQ = minQ.Value;
             ViewBag.maxQ = maxQ.Value;
@@ -34,7 +36,9 @@ namespace OnlineShop.Areas.Admin.Controllers
             ViewBag.Masp = masp;
 
             var dao = new ProductDao();
-            var listProduct = dao.GetListProduct(name,masp,status,CategoryID,minQ,maxQ);
+            var listProduct = dao.GetListProduct(name, masp, status, CategoryID, minQ, maxQ);
+
+            SetAlert("Load thành công", "success");
             return View(listProduct);
         }
 
@@ -59,7 +63,7 @@ namespace OnlineShop.Areas.Admin.Controllers
         public ActionResult Create(Product product)
         {
             var dao = new ProductDao();
-         
+
             var listProduct = dao.GetListProduct();
             ViewBagCategory();
             if (ModelState.IsValid)
@@ -74,19 +78,20 @@ namespace OnlineShop.Areas.Admin.Controllers
                 product.MetaTitle = product.MetaTitle.Replace('?', '-');
                 product.MetaTitle += listProduct.Count();
                 product.Status = true;
-             
-                long id = dao.Insert(product);
-                    if (id > 0)
-                    {
 
-                        // chuyển hướng trang về admin/product/index
-                        var result = dao.GetListProduct();
-                        return RedirectToAction("Index", "Product", result);
-                    }
-                    else
-                    {
-                        ModelState.AddModelError("", "Thêm không thành công");
-                    }
+                long id = dao.Insert(product);
+                if (id > 0)
+                {
+
+                    // chuyển hướng trang về admin/product/index
+                    var result = dao.GetListProduct();
+                    return RedirectToAction("Index", "Product", result);
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Thêm không thành công");
+                    SetAlert("Thêm không thành công", "error");
+                }
 
 
 
@@ -94,6 +99,7 @@ namespace OnlineShop.Areas.Admin.Controllers
             else
             {
                 ModelState.AddModelError("", "Form lỗi");
+                SetAlert("Form lỗi", "error");
             }
 
             return View("Create");
@@ -127,6 +133,7 @@ namespace OnlineShop.Areas.Admin.Controllers
                 else
                 {
                     ModelState.AddModelError("", "Cập nhật không thành công");
+                    SetAlert("Cập nhật không thành công", "error");
                 }
             }
             return View("Edit");
@@ -137,11 +144,11 @@ namespace OnlineShop.Areas.Admin.Controllers
 
         void ViewBagCategory()
         {
-            
-            var dao= new ProductCategoryDao();
-            SelectList a= new SelectList(dao.ListChildCaterogys(), "ID", "Name", null);
-            ViewBag.CategoryID = new SelectList(dao.ListChildCaterogys(), "ID", "Name",null);
-       
+
+            var dao = new ProductCategoryDao();
+            SelectList a = new SelectList(dao.ListChildCaterogys(), "ID", "Name", null);
+            ViewBag.CategoryID = new SelectList(dao.ListChildCaterogys(), "ID", "Name", null);
+
         }
 
         void SetViewBagAllCategory()

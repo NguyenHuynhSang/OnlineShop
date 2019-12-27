@@ -10,7 +10,7 @@ using System.Web.Script.Serialization;
 
 namespace OnlineShop.Areas.Admin.Controllers
 {
-    public class ProductCategoryController : Controller
+    public class ProductCategoryController : BaseController
     {
         // GET: Admin/ProductCategory
         [HttpGet]
@@ -23,6 +23,7 @@ namespace OnlineShop.Areas.Admin.Controllers
 
             var dao = new ProductCategoryDao();
             var listProductCategory = dao.ListAllForManager(name,parrentId,status);
+            SetAlert("Load thành công", "success");
             return View(listProductCategory);
         }
 
@@ -103,6 +104,8 @@ namespace OnlineShop.Areas.Admin.Controllers
                 else
                 {
                     ModelState.AddModelError("", "Thêm không thành công");
+                    SetAlert("Thêm không thành công", "error");
+
                 }
 
 
@@ -144,6 +147,8 @@ namespace OnlineShop.Areas.Admin.Controllers
                 else
                 {
                     ModelState.AddModelError("", "Cập nhật không thành công");
+                    SetAlert("Cập nhật không thành công", "error");
+
                 }
             }
             return View("Edit");

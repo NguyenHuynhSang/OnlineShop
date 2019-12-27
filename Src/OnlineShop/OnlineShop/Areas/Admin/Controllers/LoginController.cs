@@ -8,7 +8,7 @@ using System.Web.Mvc;
 using OnlineShop.Common;
 namespace OnlineShop.Areas.Admin.Controllers
 {
-    public class LoginController : Controller
+    public class LoginController : BaseController
     {
         // GET: Admin/Login
         public ActionResult Index()
@@ -40,22 +40,27 @@ namespace OnlineShop.Areas.Admin.Controllers
                 else if (result==0)
                 {
                     ModelState.AddModelError("", "Tài khoản không tồn tại");
+                    SetAlert("Tài khoản không tồn tại", "error");
                 }
                 else if(result==-1)
                 {
                     ModelState.AddModelError("", "Tài khoản đang bị khóa");
+                    SetAlert("Tài khoản đang bị khóa", "error");
                 }
                 else if (result == -2)
                 {
                     ModelState.AddModelError("", "Mật khẩu không đúng");
+                    SetAlert("Mật khẩu không đúng", "error");
                 }
                 else if (result == -3)
                 {
                     ModelState.AddModelError("", "Tài khoản của bạn không có quyền đăng nhập");
+                    SetAlert("Tài khoản của bạn không có quyền đăng nhập", "error");
                 }
                 else
                 {
                     ModelState.AddModelError("", "Đăng nhập lỗi");
+                    SetAlert("Đăng nhập lỗi", "error");
                 }
             }
             return View("Index");

@@ -8,13 +8,15 @@ using Model.EntityFramework;
 
 namespace OnlineShop.Areas.Admin.Controllers
 {
-    public class TagController : Controller
+    public class TagController : BaseController
     {
         // GET: Admin/Tag
         public ActionResult Index()
         {
             var dao = new TagDao();
             var listTag = dao.ListAllPaging(1,10);
+
+            SetAlert("Load thành công", "success");
             return View(listTag);
         }
 
@@ -45,6 +47,7 @@ namespace OnlineShop.Areas.Admin.Controllers
                 else
                 {
                     ModelState.AddModelError("", "Thêm Tag không thành công");
+                    SetAlert("Thêm không thành công", "error");
                 }
             }
             return View("Create");
@@ -76,6 +79,7 @@ namespace OnlineShop.Areas.Admin.Controllers
                 else
                 {
                     ModelState.AddModelError("", "Cập nhật không thành công");
+                    SetAlert("Cập nhật không thành công", "error");
                 }
             }
             return View("Edit");

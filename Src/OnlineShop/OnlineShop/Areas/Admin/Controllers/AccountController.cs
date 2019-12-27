@@ -10,7 +10,7 @@ using OnlineShop.Common;
 
 namespace OnlineShop.Areas.Admin.Controllers
 {
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
 
         // GET: Admin/Account
@@ -21,6 +21,7 @@ namespace OnlineShop.Areas.Admin.Controllers
             SetStatusViewBag();
             var dao = new UserDao();
 
+            SetAlert("Load thành công", "success");
             ViewBag.UserName = userName;
             ViewBag.Name = name;
             ViewBag.SDT = sdt;
@@ -99,11 +100,13 @@ namespace OnlineShop.Areas.Admin.Controllers
                     else
                     {
                         ModelState.AddModelError("", "Thêm User không thành công");
+                        SetAlert("Thêm User không thành công", "error");
                     }
                 }
                 else
                 {
                     ModelState.AddModelError("", "Tài khoản bị trùng");
+                    SetAlert("Tài khoản bị trùng", "warning");
                 }
 
             }
@@ -143,6 +146,7 @@ namespace OnlineShop.Areas.Admin.Controllers
                 else
                 {
                     ModelState.AddModelError("", "Cập nhật không thành công");
+                    SetAlert("Cập nhật không thành công", "error");
                 }
             }
             return View("Edit");

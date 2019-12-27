@@ -11,7 +11,7 @@ using System.Web.Script.Serialization;
 
 namespace OnlineShop.Areas.Admin.Controllers
 {
-    public class UserGroupController : Controller
+    public class UserGroupController : BaseController
     {
         // GET: Admin/UserGroup
         [HttpGet]
@@ -45,6 +45,8 @@ namespace OnlineShop.Areas.Admin.Controllers
 
             //Serialize to JSON string.
             ViewBag.Json = (new JavaScriptSerializer()).Serialize(nodes);
+
+            SetAlert("Load thành công", "success");
             return View();
         }
 
@@ -54,9 +56,6 @@ namespace OnlineShop.Areas.Admin.Controllers
             List<TreeViewNode> items = (new JavaScriptSerializer()).Deserialize<List<TreeViewNode>>(selectedItems);
             return RedirectToAction("Index");
         }
-
-
-
 
         [HttpGet]
         public ActionResult Create()
@@ -118,6 +117,7 @@ namespace OnlineShop.Areas.Admin.Controllers
                 else
                 {
                     ModelState.AddModelError("", "Cập nhật không thành công");
+                    SetAlert("Cập nhật không thành công", "error");
                 }
             }
             return View("Edit");

@@ -10,7 +10,7 @@ using OnlineShop.Common;
 
 namespace OnlineShop.Areas.Admin.Controllers
 {
-    public class ContentController : Controller
+    public class ContentController : BaseController
     {
         // GET: Admin/Content
         public ActionResult Index(int page = 1, int pageSize =10 ,string name ="",string description="")
@@ -22,6 +22,7 @@ namespace OnlineShop.Areas.Admin.Controllers
 
             ViewBag.name = name;
             ViewBag.description = description;
+
             return View(model);
         }
 
@@ -61,6 +62,7 @@ namespace OnlineShop.Areas.Admin.Controllers
                 else
                 {
                     ModelState.AddModelError("", "Cập nhật không thành công");
+                    SetAlert("Cập nhật không thành công", "error");
                 }
             }
             return View("Edit");
@@ -71,7 +73,7 @@ namespace OnlineShop.Areas.Admin.Controllers
         public ActionResult Create(Content model)
         {
             if (ModelState.IsValid)
-            {
+            {    
                 var session = (UserLogin)Session[CommonConstants.USER_SESSTION];
                 model.CreatedBy = session.UserName;
                 new ContentDao().Create(model);
@@ -86,6 +88,12 @@ namespace OnlineShop.Areas.Admin.Controllers
         {
             var dao = new CategoriesDao();
             ViewBag.CategoryID = new SelectList(dao.ListAll(), "ID", "Name", selectedId);
+        }
+
+        public void SetViewBagCategory(long? selectedId = null)
+        {
+            var dao = new CategoriesDao();
+            ViewBag.CategoryID = dao.ListAll();
         }
 
         [HttpGet]
