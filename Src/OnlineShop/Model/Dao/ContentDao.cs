@@ -19,8 +19,6 @@ namespace Model.Dao
         {
             db = new OnlineShopDbContext();
         }
-
-
         public IEnumerable<Content> ListAllPaging(int page, int pageSize, string name=null,string description=null)
         {
             IQueryable<Content> model = db.Contents;
@@ -32,7 +30,7 @@ namespace Model.Dao
             {
                 model = model.Where(x => x.Description.Contains(description) || x.Description.Contains(description));
 
-
+            }
             return model.OrderByDescending(x => x.CreatedDate).ToPagedList(page, pageSize);
         }
 
