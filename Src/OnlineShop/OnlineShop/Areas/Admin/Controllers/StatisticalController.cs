@@ -29,7 +29,7 @@ namespace OnlineShop.Areas.Admin.Controllers
             var model = dao.GetRevenueStatistic(fromDate, toDate);
             ViewBag.FromDate = fromDate;
             ViewBag.ToDate = toDate;
-
+            ViewBag.Statistical = model;
             SetAlert("Load thành công", "success");
             return View(model);
         }
