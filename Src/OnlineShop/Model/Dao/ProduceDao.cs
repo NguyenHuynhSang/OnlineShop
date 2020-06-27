@@ -184,9 +184,9 @@ namespace Model.Dao
             return productViewModel.OrderBy(x => x.product.CreatedDate).ToList();
 
         }
-        public List<string> ListName(string keyword)
+        public List<Product> ListName(string keyword)
         {
-            return db.Products.Where(x => x.Name.Contains(keyword)).Select(x => x.Name).ToList();
+            return db.Products.Where(x => x.Name.Contains(keyword)).ToList();
         }
 
 

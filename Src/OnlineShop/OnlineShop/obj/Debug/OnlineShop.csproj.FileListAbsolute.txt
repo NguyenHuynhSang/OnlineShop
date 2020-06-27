@@ -545,3 +545,4 @@ D:\hoc\ASP.net\oad\báo cáo\OnlineShop\OnlineShop\Src\OnlineShop\OnlineShop\obj
 D:\hoc\ASP.net\oad\báo cáo\OnlineShop\OnlineShop\Src\OnlineShop\OnlineShop\obj\Debug\OnlineShop.csproj.CopyComplete
 D:\hoc\ASP.net\oad\báo cáo\OnlineShop\OnlineShop\Src\OnlineShop\OnlineShop\obj\Debug\OnlineShop.dll
 D:\hoc\ASP.net\oad\báo cáo\OnlineShop\OnlineShop\Src\OnlineShop\OnlineShop\obj\Debug\OnlineShop.pdb
+D:\Git\OnlineShop\Src\OnlineShop\OnlineShop\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll

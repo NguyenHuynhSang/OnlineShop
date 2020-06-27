@@ -47,3 +47,4 @@ D:\hoc\ASP.net\oad\báo cáo\OnlineShop\OnlineShop\Src\OnlineShop\AutoConfig\obj
 D:\hoc\ASP.net\oad\báo cáo\OnlineShop\OnlineShop\Src\OnlineShop\AutoConfig\obj\Debug\AutoConfig.csproj.CoreCompileInputs.cache
 D:\hoc\ASP.net\oad\báo cáo\OnlineShop\OnlineShop\Src\OnlineShop\AutoConfig\obj\Debug\AutoConfig.exe
 D:\hoc\ASP.net\oad\báo cáo\OnlineShop\OnlineShop\Src\OnlineShop\AutoConfig\obj\Debug\AutoConfig.pdb
+D:\Git\OnlineShop\Src\OnlineShop\AutoConfig\bin\Debug\AutoConfig.exe

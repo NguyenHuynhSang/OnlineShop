@@ -19,17 +19,17 @@
                 });
             },
             focus: function (event, ui) {
-                jQuery("#txtKeyWord").val(ui.item.label);
+                jQuery("#txtKeyWord").val(ui.item.Name);
                 return false;
             },
             select: function (event, ui) {
-                jQuery("#txtKeyWord").val(ui.item.label);
+                jQuery("#txtKeyWord").val(ui.item.Name);
                 return false;
             }
         })
             .autocomplete("instance")._renderItem = function (ul, item) {
                 return jQuery("<li>")
-                    .append("<a>" + item.label+ "</a>")
+                    .append("<img  width='100' height='100' src='"+item.Image+"' > <a>" + item.Name+ "</a>")
                     .appendTo(ul);
             };
     }
