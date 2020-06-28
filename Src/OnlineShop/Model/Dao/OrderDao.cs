@@ -33,17 +33,28 @@ namespace Model.Dao
         public List<RevenueStatisticViewModel> GetRevenueStatistic(string fromDate,string toDate)
         {
 
-
-       
-
-
-
             var parameter = new object[]{
                 new SqlParameter("@fromDate",fromDate),
                    new SqlParameter("@toDate",toDate),
             };
-          
-            return db.Database.SqlQuery<RevenueStatisticViewModel>("GetRevenueStatistic @fromDate,@toDate", parameter).ToList();
+
+            var list = db.Database.SqlQuery<RevenueStatisticViewModelDateType>("GetRevenueStatistic @fromDate,@toDate", parameter).ToList();
+
+            List<RevenueStatisticViewModel> listReturn=new List<RevenueStatisticViewModel>();
+
+            foreach (var item in list)
+            {
+                RevenueStatisticViewModel val = new RevenueStatisticViewModel();
+                val.Benefis = item.Benefis;
+                val.Revenunes = item.Revenunes;
+                val.Date = item.Date.ToString("dd/MMM/yyyy");
+
+                listReturn.Add(val);
+            }
+
+
+
+            return listReturn;
 
     
     }
