@@ -154,7 +154,7 @@ namespace Model.Dao
         }
 
 
-        public ProductCategory Detail(long id)
+        public ProductCategory Detail(long? id)
         {
             return db.ProductCategories.Find(id);
 

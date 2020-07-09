@@ -19,7 +19,7 @@ namespace Model.Dao
         {
             return db.Products.Find(id);
         }
-        public List<ProductViewModel> ListByCategoryId(long categoryID, ref int totalRecord, int pageIndex = 1, int pageSize = 2, int oderBy=-1)
+        public List<ProductViewModel> ListByCategoryId(long? categoryID, ref int totalRecord, int pageIndex = 1, int pageSize = 2, int oderBy=-1)
         {
          
             List<Product> products = db.Products.ToList();
@@ -34,15 +34,29 @@ namespace Model.Dao
                 groups = groups.Where(x => x.ParentID == categoryID).ToList();
             }
 
-           
             var model = from u in products
-                                join g in groups
-                                on u.CategoryID equals g.ID
-                                select new ProductViewModel
-                                {
-                                    product = u,
-                                    category = g,
-                                };
+                        join g in groups
+                        on u.CategoryID equals g.ID
+                        select new ProductViewModel
+                        {
+                            product = u,
+                            category = g,
+                        };
+
+
+
+            if (categoryID==null)
+            {
+
+                model= from u in products
+                join c in db.ProductCategories
+                on u.CategoryID equals c.ID
+                select new ProductViewModel
+                {
+                    product = u,
+                    category = c,
+                };
+            }
 
             totalRecord =model.Count();
             model= model.OrderByDescending(x => x.product.CreatedDate).Skip((pageIndex - 1) * pageSize).Take(pageSize);

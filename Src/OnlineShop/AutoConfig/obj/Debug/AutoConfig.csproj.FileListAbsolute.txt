@@ -50,6 +50,7 @@ D:\hoc\ASP.net\oad\báo cáo\OnlineShop\OnlineShop\Src\OnlineShop\AutoConfig\obj
 D:\Git\OnlineShop\Src\OnlineShop\AutoConfig\bin\Debug\AutoConfig.exe.config
 D:\Git\OnlineShop\Src\OnlineShop\AutoConfig\bin\Debug\AutoConfig.exe
 D:\Git\OnlineShop\Src\OnlineShop\AutoConfig\bin\Debug\AutoConfig.pdb
+D:\Git\OnlineShop\Src\OnlineShop\AutoConfig\obj\Debug\AutoConfig.csprojAssemblyReference.cache
 D:\Git\OnlineShop\Src\OnlineShop\AutoConfig\obj\Debug\AutoConfig.Form1.resources
 D:\Git\OnlineShop\Src\OnlineShop\AutoConfig\obj\Debug\AutoConfig.Properties.Resources.resources
 D:\Git\OnlineShop\Src\OnlineShop\AutoConfig\obj\Debug\AutoConfig.csproj.GenerateResource.cache

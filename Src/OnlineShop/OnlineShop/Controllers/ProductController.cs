@@ -21,6 +21,7 @@ namespace OnlineShop.Controllers
             var product = new ProductDao().ViewDetail(id);
             ViewBag.Category = new ProductCategoryDao().ViewDetail(product.CategoryID);
             ViewBag.RelativeProduct = new ProductDao().ListRelativeProduct(product.CategoryID);
+            
             return View(product);
         }
             
@@ -56,6 +57,7 @@ namespace OnlineShop.Controllers
             return View(model);
         }
 
+   
 
         public JsonResult ListName(string q)
         {
