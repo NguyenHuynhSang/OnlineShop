@@ -101,7 +101,7 @@ namespace Model.Dao
 
 
 
-        public List<ProductViewModel> Search(string keyWord, ref int totalRecord, int pageIndex = 1, int pageSize = 2, int oderBy = -1)
+        public List<ProductViewModel> Search(string keyWord,int fromValue,int toValue, ref int totalRecord, int pageIndex = 1, int pageSize = 2, int oderBy = -1)
         {
 
             List<Product> products = db.Products.Where(x=>x.Name.Contains(keyWord)).ToList();
@@ -128,6 +128,21 @@ namespace Model.Dao
                 decimal? value = 0;
                 model = model.OrderBy(x => value = x.product.PromotionPrice != 0 ? x.product.PromotionPrice : x.product.Price).Skip((pageIndex - 1) * pageSize).Take(pageSize);
             }
+
+            if (fromValue>0 &&toValue==0)
+            {
+                model = model.Where(x => x.product.Price >= fromValue);
+            }
+            if (fromValue == 0 && toValue > 0)
+            {
+                model = model.Where(x => x.product.Price <=toValue);
+            }
+
+            if (fromValue > 0 && toValue > 0)
+            {
+                model = model.Where(x => x.product.Price <= toValue && x.product.Price >= fromValue);
+            }
+
             return model.ToList();
         }
 

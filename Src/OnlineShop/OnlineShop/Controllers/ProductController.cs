@@ -70,7 +70,7 @@ namespace OnlineShop.Controllers
         }
 
 
-        public ActionResult Search(string keyWord="", int page = 1, int pageSize = 15, int orderby = -1)
+        public ActionResult Search(string keyWord="",int fromValue=0,int toValue=0, int page = 1, int pageSize = 15, int orderby = -1)
         {
 
 
@@ -81,10 +81,11 @@ namespace OnlineShop.Controllers
             var category = new ProductCategoryDao().Detail(1);
             ViewBag.Category = category;
 
-
+            ViewBag.fromValue = fromValue;
+            ViewBag.toValue = toValue;
 
             int totalRecord = 0;
-            var model = new ProductDao().Search(keyWord, ref totalRecord, page, pageSize, orderby);
+            var model = new ProductDao().Search(keyWord,fromValue,toValue, ref totalRecord, page, pageSize, orderby);
 
             ViewBag.Total = totalRecord;
             ViewBag.Page = page;
